@@ -39,6 +39,18 @@ public class AuthorizationEndpointsTests : IClassFixture<CustomWebApplicationFac
         return client;
     }
 
+    // TI-16.1 : sans authentification, /Clients redirige vers la page de connexion
+    [Fact]
+    public async Task Clients_SansAuthentification_RedirigeVersLogin()
+    {
+        var client = _plain.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
+
+        var response = await client.GetAsync("https://localhost/Clients");
+
+        Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+        Assert.Contains("Login", response.Headers.Location!.ToString());
+    }
+
     // TI-16.2 : un utilisateur au role client ne peut pas ouvrir /AdminUtilisateurs
     [Fact]
     public async Task AdminUtilisateurs_AvecRoleClient_Retourne403()
@@ -59,6 +71,31 @@ public class AuthorizationEndpointsTests : IClassFixture<CustomWebApplicationFac
         var response = await client.GetAsync("https://localhost/AdminUtilisateurs");
 
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    // TI-16.4 : une operation sur un compte inexistant est refusee et rien n'est cree
+    [Fact]
+    public async Task OperationsCreate_AvecCompteInvalide_EstRefusee()
+    {
+        var client = CreateClientWithRole("client");
+
+        var page = await client.GetAsync("https://localhost/Operations/Create");
+        var html = await page.Content.ReadAsStringAsync();
+        var match = Regex.Match(html, "name=\"__RequestVerificationToken\"[^>]*value=\"(?<t>[^\"]+)\"");
+        Assert.True(match.Success, "Jeton anti-falsification introuvable.");
+
+        var form = new FormUrlEncodedContent(new Dictionary<string, string>
+        {
+            ["CompteId"] = "9999",
+            ["TypeOperation"] = "Depot",
+            ["Montant"] = "1000",
+            ["__RequestVerificationToken"] = match.Groups["t"].Value
+        });
+        var response = await client.PostAsync("https://localhost/Operations/Create", form);
+
+        // Pas de redirection vers la liste : le formulaire est reaffiche avec une erreur
+        Assert.NotEqual(HttpStatusCode.Redirect, response.StatusCode);
+        Assert.Contains("introuvable", await response.Content.ReadAsStringAsync());
     }
 
     // TI-16.5 : POST /Culture/SetLanguage avec jeton anti-falsification -> cookie de culture
@@ -84,6 +121,17 @@ public class AuthorizationEndpointsTests : IClassFixture<CustomWebApplicationFac
         Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
         Assert.True(response.Headers.TryGetValues("Set-Cookie", out var cookies));
         Assert.Contains(cookies!, c => c.Contains(".AspNetCore.Culture") && c.Contains("rn-BI"));
+    }
+
+    // TM-16.15 : le health check repond sans authentification
+    [Fact]
+    public async Task Health_SansAuthentification_Retourne200()
+    {
+        var client = _plain.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
+
+        var response = await client.GetAsync("https://localhost/health");
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     // Pages reservees au personnel : un client recoit 403

@@ -25,7 +25,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     }
 });
 
-// --- Base de donnÃ©es (chaÃ®ne de connexion dans les User Secrets) ---
+// --- Base de données (chaîne de connexion dans les User Secrets) ---
 builder.Services.AddScoped<AuditSaveChangesInterceptor>();
 builder.Services.AddDbContext<AkarangaBankContext>((services, options) =>
     options.UseSqlServer(
@@ -43,12 +43,12 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     options.Password.RequireLowercase = true;
     options.Password.RequireNonAlphanumeric = true;
 
-    // Verrouillage aprÃ¨s tentatives Ã©chouÃ©es
+    // Verrouillage après tentatives échouées
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
     options.Lockout.MaxFailedAccessAttempts = 5;
     options.Lockout.AllowedForNewUsers = true;
 
-    // Confirmation d'e-mail dÃ©sactivÃ©e pour le cours
+    // Confirmation d'e-mail désactivée pour le cours
     options.SignIn.RequireConfirmedEmail = false;
     options.SignIn.RequireConfirmedAccount = false;
 
@@ -97,7 +97,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     };
 });
 
-// --- Services mÃ©tier ---
+// --- Services métier ---
 builder.Services.AddScoped<IAgenceService, AgenceService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IVerificationKYCService, VerificationKYCService>();
@@ -207,7 +207,7 @@ var app = builder.Build();
 
 app.UseForwardedHeaders();
 
-// --- Initialisation : rÃ´les + administrateur ---
+// --- Initialisation : rôles + administrateur ---
 using (var scope = app.Services.CreateScope())
 {
     if (app.Configuration.GetValue<bool>("Database:ApplyMigrationsOnStartup"))
@@ -274,5 +274,3 @@ app.MapGet("/health/ready", async (AkarangaBankContext context) =>
 app.Run();
 
 public partial class Program { }
-
-
