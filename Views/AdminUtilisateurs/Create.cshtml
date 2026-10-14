@@ -1,0 +1,44 @@
+@model AkarangaBank.Web.ViewModels.UtilisateurCreateViewModel
+@{
+    ViewData["Title"] = T["NewUser"];
+}
+
+<h1>@T["NewUser"]</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+    <div class="mb-3">
+        <label asp-for="NomComplet" class="form-label"></label>
+        <input asp-for="NomComplet" class="form-control" />
+        <span asp-validation-for="NomComplet" class="text-danger" role="alert"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger" role="alert"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger" role="alert"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Role" class="form-label"></label>
+        <select asp-for="Role" asp-items="ViewBag.Roles" class="form-select"></select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AgenceId" class="form-label"></label>
+        <select asp-for="AgenceId" asp-items="ViewBag.Agences" class="form-select">
+            <option value="">-- Sélectionner une agence --</option>
+        </select>
+        <span asp-validation-for="AgenceId" class="text-danger" role="alert"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">@T["Create"]</button>
+    <a asp-action="Index" class="btn btn-secondary">@T["Cancel"]</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

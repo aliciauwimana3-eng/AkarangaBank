@@ -1,0 +1,41 @@
+@model AkarangaBank.Web.ViewModels.VirementCreateViewModel
+@{
+    ViewData["Title"] = T["NewTransfer"];
+}
+
+<h1>@T["NewTransfer"]</h1>
+<p class="text-muted">@T["TransferIntro"]</p>
+<div class="row"><div class="col-md-7">
+    <form asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+        <div class="mb-3"><label asp-for="CompteSourceId" class="form-label"></label><select asp-for="CompteSourceId" asp-items="ViewBag.ComptesSource" class="form-select"><option value="0">— @T["Choose"] —</option></select><span asp-validation-for="CompteSourceId" class="text-danger" role="alert"></span></div>
+        <div class="form-check mb-3"><input asp-for="EstInterbancaire" class="form-check-input" /><label asp-for="EstInterbancaire" class="form-check-label"></label></div>
+        <div id="destinationInterne" class="mb-3"><label asp-for="CompteDestinationId" class="form-label"></label><select asp-for="CompteDestinationId" asp-items="ViewBag.ComptesDestination" class="form-select"><option value="">— @T["Choose"] —</option></select><span asp-validation-for="CompteDestinationId" class="text-danger" role="alert"></span></div>
+        <div id="destinationExterne" hidden>
+            <div class="mb-3"><label asp-for="BeneficiaireExterne" class="form-label"></label><input asp-for="BeneficiaireExterne" class="form-control" /><span asp-validation-for="BeneficiaireExterne" class="text-danger" role="alert"></span></div>
+            <div class="mb-3"><label asp-for="BanqueDestination" class="form-label"></label><input asp-for="BanqueDestination" class="form-control" /><span asp-validation-for="BanqueDestination" class="text-danger" role="alert"></span></div>
+            <div class="mb-3"><label asp-for="NumeroCompteExterne" class="form-label"></label><input asp-for="NumeroCompteExterne" class="form-control" autocomplete="off" /><span asp-validation-for="NumeroCompteExterne" class="text-danger" role="alert"></span></div>
+            <div class="alert alert-info" role="note">@T["InterbankTransferNotice"]</div>
+        </div>
+        <div class="mb-3"><label asp-for="Montant" class="form-label"></label><input asp-for="Montant" class="form-control" type="number" min="0.01" step="0.01" /><span asp-validation-for="Montant" class="text-danger" role="alert"></span></div>
+        <div class="mb-3"><label asp-for="Motif" class="form-label"></label><input asp-for="Motif" class="form-control" /><span asp-validation-for="Motif" class="text-danger" role="alert"></span></div>
+        <button type="submit" class="btn btn-primary">@T["SaveTransfer"]</button>
+        <a asp-action="Index" class="btn btn-secondary">@T["Cancel"]</a>
+    </form>
+</div></div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        (() => {
+            const toggle = document.getElementById('EstInterbancaire');
+            const interne = document.getElementById('destinationInterne');
+            const externe = document.getElementById('destinationExterne');
+            const update = () => {
+                interne.hidden = toggle.checked;
+                externe.hidden = !toggle.checked;
+            };
+            toggle.addEventListener('change', update);
+            update();
+        })();
+    </script>
+}

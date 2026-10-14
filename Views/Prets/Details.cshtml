@@ -1,0 +1,33 @@
+@model AkarangaBank.Web.Models.Pret
+@{
+    ViewData["Title"] = T["LoanDetails"];
+}
+<h1>@T["LoanDetails"]</h1>
+@if (User.IsInRole("admin") || User.IsInRole("gestionnaire")) { <p><a asp-controller="Reporting" asp-action="ContratPretPdf" asp-route-pretId="@Model.Id" class="btn btn-outline-primary">Générer le contrat PDF</a></p> }
+<dl class="row">
+    <dt class="col-sm-3">Type de prêt</dt><dd class="col-sm-9">@Model.TypePret.Libelle</dd>
+    <dt class="col-sm-3">Référence</dt><dd class="col-sm-9">@Model.Reference</dd>
+    <dt class="col-sm-3">Client</dt><dd class="col-sm-9">@Model.Client.Nom @Model.Client.Prenom</dd>
+    <dt class="col-sm-3">Compte de versement</dt><dd class="col-sm-9">@Model.CompteDebit.NumeroCompte</dd>
+    <dt class="col-sm-3">Montant principal</dt><dd class="col-sm-9">@Model.MontantPrincipal.ToString("N2") @Model.CompteDebit.Devise</dd>
+    <dt class="col-sm-3">Taux annuel</dt><dd class="col-sm-9">@Model.TauxInteret.ToString("N2") %</dd>
+    <dt class="col-sm-3">Durée</dt><dd class="col-sm-9">@Model.DureeMois mois</dd>
+    <dt class="col-sm-3">Mensualité estimée</dt><dd class="col-sm-9">@Model.Mensualite.ToString("N2") @Model.CompteDebit.Devise</dd>
+    <dt class="col-sm-3">Statut</dt><dd class="col-sm-9">@Model.Statut</dd>
+    @if (!string.IsNullOrWhiteSpace(Model.MotifRejet)) { <dt class="col-sm-3">Motif du rejet</dt><dd class="col-sm-9">@Model.MotifRejet</dd> }
+    <dt class="col-sm-3">Montant remboursé</dt><dd class="col-sm-9">@Model.MontantRembourse.ToString("N2") @Model.CompteDebit.Devise</dd>
+</dl>
+@if (Model.Echeances.Count > 0)
+{
+    <h2 class="h4 mt-4">@T["LoanSchedule"]</h2>
+    <div class="table-responsive"><table role="table" aria-label="Prets Details" class="table table-sm table-striped"><thead><tr><th scope="col">N°</th><th scope="col">Échéance</th><th scope="col">Capital</th><th scope="col">Intérêt</th><th scope="col">Total</th><th scope="col">Pénalité</th><th scope="col">Statut</th><th scope="col">Action</th></tr></thead><tbody>
+    @foreach (var e in Model.Echeances)
+    {
+        <tr><td>@e.NumeroEcheance</td><td>@e.DateEcheance.ToString("d")</td><td>@e.Capital.ToString("N2")</td><td>@e.Interet.ToString("N2")</td><td>@e.MontantTotal.ToString("N2")</td><td>@e.Penalite.ToString("N2")</td><td>@e.Statut</td><td>
+        @if ((e.Statut == "EnAttente" || e.Statut == "EnRetard") && (User.IsInRole("admin") || User.IsInRole("gestionnaire")))
+        { <form asp-action="PayerEcheance" method="post"><input type="hidden" name="id" value="@e.Id" /><button class="btn btn-sm btn-primary" type="submit">@T["Repay"]</button></form> }
+        </td></tr>
+    }
+    </tbody></table></div>
+}
+<a asp-action="Index" class="btn btn-secondary">@T["BackLoans"]</a>

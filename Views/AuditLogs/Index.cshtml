@@ -1,0 +1,41 @@
+@model IReadOnlyList<AkarangaBank.Web.Models.AuditLog>
+@{
+    ViewData["Title"] = T["JournalAudit"];
+    int page = ViewBag.Page;
+    int pageSize = ViewBag.PageSize;
+    int total = ViewBag.Total;
+}
+<h1>@T["JournalAudit"]</h1>
+<p class="text-muted">@T["AuditMasked"]</p>
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3"><input name="table" value="@ViewBag.Table" class="form-control" placeholder="@T["TableAffected"]" /></div>
+    <div class="col-md-3"><select name="action" class="form-select"><option value="">@T["AllActions"]</option>@foreach (var a in new[] { "Added", "Modified", "Deleted" }) { <option value="@a" selected="@(ViewBag.Action as string == a)">@a</option> }</select></div>
+    <div class="col-auto"><button class="btn btn-outline-primary">@T["Filter"]</button></div>
+</form>
+<div class="table-responsive"><table role="table" aria-label="@T["JournalAudit"]" class="table table-sm table-striped align-middle">
+    <thead><tr><th scope="col">@T["Date"]</th><th scope="col">@T["Utilisateurs"]</th><th scope="col">@T["Agences"]</th><th scope="col">@T["Actions"]</th><th scope="col">@T["TableAffected"] / ID</th><th scope="col">@T["Before"] / @T["After"]</th><th scope="col">IP</th></tr></thead>
+    <tbody>
+    @foreach (var log in Model)
+    {
+        <tr>
+            <td>@log.DateEvenement.ToLocalTime().ToString("g")</td>
+            <td>@(log.Utilisateur?.NomComplet ?? T["System"])</td>
+            <td>@log.Agence?.Nom</td>
+            <td>@log.Action</td>
+            <td>@log.TableConcernee / @(log.EnregistrementId?.ToString() ?? T["NewRecord"])</td>
+            <td><details><summary>@T["Details"]</summary><small><strong>@T["Before"]:</strong> @log.ValeurAvant<br /><strong>@T["After"]:</strong> @log.ValeurApres<br />@log.Details</small></details></td>
+            <td>@log.AdresseIP</td>
+        </tr>
+    }
+    @if (Model.Count == 0) { <tr><td colspan="7" class="text-center text-muted">@T["NoAuditEntries"]</td></tr> }
+    </tbody>
+</table></div>
+@if (total > pageSize)
+{
+    <nav><ul class="pagination">
+        @for (var p = 1; p <= (int)Math.Ceiling((double)total / pageSize); p++)
+        {
+            <li class="page-item @(p == page ? "active" : "")"><a class="page-link" asp-action="Index" asp-route-table="@ViewBag.Table" asp-route-action="@ViewBag.Action" asp-route-page="@p">@p</a></li>
+        }
+    </ul></nav>
+}

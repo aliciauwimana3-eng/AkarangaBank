@@ -1,0 +1,38 @@
+@model AkarangaBank.Web.ViewModels.OperationListViewModel
+@{
+    ViewData["Title"] = T["Operations"];
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>@T["Operations"]</h1>
+    <a asp-action="Create" class="btn btn-primary">Nouvelle opération</a>
+</div>
+@if (TempData["Success"] is string success) { <div class="alert alert-success" role="status" aria-live="polite">@success</div> }
+@if (TempData["Error"] is string error) { <div class="alert alert-danger" role="alert" aria-live="assertive">@error</div> }
+
+<div class="table-responsive">
+    <table role="table" aria-label="@T["Operations"]" class="table table-striped align-middle">
+        <thead><tr><th scope="col">Référence</th><th scope="col">@T["Type"]</th><th scope="col">@T["Account"]</th><th scope="col">@T["Amount"]</th><th scope="col">@T["Date"]</th><th scope="col">@T["Status"]</th><th scope="col">@T["Actions"]</th></tr></thead>
+        <tbody>
+        @foreach (var o in Model.Operations)
+        {
+            <tr>
+                <td>@o.Reference</td>
+                <td>@o.TypeOperation</td>
+                <td>@o.Compte.NumeroCompte<br /><small>@o.Compte.Client.Nom @o.Compte.Client.Prenom</small></td>
+                <td>@o.Montant.ToString("N2") @o.Devise</td>
+                <td>@o.DateOperation.ToLocalTime().ToString("g")</td>
+                <td><span class="badge @(o.Statut == "Valide" ? "bg-success" : o.Statut == "Rejete" ? "bg-danger" : "bg-warning text-dark")">@o.Statut</span></td>
+                <td>
+                    @if (Model.PeutValider && o.Statut == "EnAttente")
+                    {
+                        <form asp-action="Valider" asp-route-id="@o.Id" method="post" class="d-inline"><button class="btn btn-sm btn-success" type="submit">@T["Approve"]</button></form>
+                        <form asp-action="Rejeter" asp-route-id="@o.Id" method="post" class="d-inline"><button class="btn btn-sm btn-outline-danger" type="submit">@T["Reject"]</button></form>
+                    }
+                </td>
+            </tr>
+        }
+        @if (Model.Operations.Count == 0) { <tr><td colspan="7" class="text-center text-muted">Aucune opération enregistrée.</td></tr> }
+        </tbody>
+    </table>
+</div>

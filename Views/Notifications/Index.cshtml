@@ -1,0 +1,37 @@
+@model IReadOnlyList<AkarangaBank.Web.Models.NotificationUtilisateur>
+@{
+    ViewData["Title"] = T["Notifications"];
+}
+
+<h1>@T["Notifications"]</h1>
+@if (Model.Count == 0)
+{
+    <p class="text-muted">@T["NoNotifications"]</p>
+}
+else
+{
+    <ul class="list-group" aria-label="@T["Notifications"]">
+        @foreach (var notification in Model)
+        {
+            <li class="list-group-item @(notification.DateLecture is null ? "list-group-item-primary" : "")">
+                <div class="d-flex justify-content-between gap-3">
+                    <div>
+                        <h2 class="h5">@notification.Titre</h2>
+                        <p class="mb-1">@notification.Message</p>
+                        <time datetime="@notification.DateCreation.ToString("O")">@notification.DateCreation.ToLocalTime().ToString("g")</time>
+                        @if (!string.IsNullOrWhiteSpace(notification.Url))
+                        {
+                            <a href="@notification.Url" class="ms-2">@T["Open"]</a>
+                        }
+                    </div>
+                    @if (notification.DateLecture is null)
+                    {
+                        <form asp-action="MarkRead" asp-route-id="@notification.Id" method="post">
+                            <button type="submit" class="btn btn-sm btn-outline-secondary">@T["MarkRead"]</button>
+                        </form>
+                    }
+                </div>
+            </li>
+        }
+    </ul>
+}

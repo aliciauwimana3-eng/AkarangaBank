@@ -1,0 +1,30 @@
+@model AkarangaBank.Web.ViewModels.SeuilsAMLViewModel
+@{
+    ViewData["Title"] = T["SeuilsAML"];
+}
+<h1>@T["SeuilsAML"]</h1>
+<p class="text-muted">Sélectionnez une agence pour définir ses seuils. Les agences sans réglage propre utilisent les seuils globaux.</p>
+@if (TempData["Success"] is string success) { <div class="alert alert-success" role="status" aria-live="polite">@success</div> }
+<form asp-action="Seuils" method="post" class="col-lg-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+    <div class="mb-3"><label asp-for="AgenceId" class="form-label"></label><select asp-for="AgenceId" asp-items="ViewBag.Agences" class="form-select"><option value="">Global (toutes les agences par défaut)</option></select></div>
+    <div class="mb-3">
+        <label asp-for="SeuilAML" class="form-label"></label>
+        <input asp-for="SeuilAML" class="form-control" type="number" min="0.01" step="0.01" />
+        <span asp-validation-for="SeuilAML" class="text-danger" role="alert"></span>
+        <div class="form-text">Déclenche la vigilance renforcée pour les opérations atteignant ce montant.</div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SeuilDeclarationEspece" class="form-label"></label>
+        <input asp-for="SeuilDeclarationEspece" class="form-control" type="number" min="0.01" step="0.01" />
+        <span asp-validation-for="SeuilDeclarationEspece" class="text-danger" role="alert"></span>
+        <div class="form-text">Déclenche une alerte de déclaration CNRF pour les dépôts et retraits en espèces.</div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SeuilBlocage" class="form-label"></label>
+        <input asp-for="SeuilBlocage" class="form-control" type="number" min="0.01" step="0.01" />
+        <span asp-validation-for="SeuilBlocage" class="text-danger" role="alert"></span>
+        <div class="form-text">Bloque les transactions atteignant le seuil critique.</div>
+    </div>
+    <button type="submit" class="btn btn-primary">@T["Save"]</button>
+</form>

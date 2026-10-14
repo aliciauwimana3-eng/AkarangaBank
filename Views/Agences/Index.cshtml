@@ -1,0 +1,97 @@
+@model AkarangaBank.Web.ViewModels.AgenceListViewModel
+@{
+    ViewData["Title"] = T["Agences"];
+}
+
+<h1>@T["Agences"]</h1>
+
+@* Messages flash *@
+@if (TempData["Success"] is string msg)
+{
+    <div class="alert alert-success" role="status" aria-live="polite">@msg</div>
+}
+@if (TempData["Error"] is string err)
+{
+    <div class="alert alert-danger" role="alert" aria-live="assertive">@err</div>
+}
+
+@* Barre de recherche + bouton créer (réservé à l'admin) *@
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-6">
+        <input type="text" name="recherche" value="@Model.Recherche"
+               class="form-control"
+               placeholder="@T["SearchBranches"]" />
+    </div>
+    <div class="col-md-2">
+        <button type="submit" class="btn btn-primary">@T["Search"]</button>
+    </div>
+    <div class="col-md-4 text-end">
+        @if (User.IsInRole("admin"))
+        {
+            <a asp-action="Create" class="btn btn-success">@T["NewAgency"]</a>
+        }
+    </div>
+</form>
+
+<p class="text-muted">@Model.Total @T["AgencyResults"]</p>
+
+<table role="table" aria-label="@T["Agences"]" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Code</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Ville</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var agence in Model.Agences)
+    {
+        <tr>
+            <td>@agence.Code</td>
+            <td>@agence.Nom</td>
+            <td>@agence.Ville</td>
+            <td>
+                @if (agence.EstSiege)
+                {
+                    <span class="badge bg-primary">@T["HeadOffice"]</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">Agence</span>
+                }
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@agence.Id"
+                   class="btn btn-sm btn-primary">Détails</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <a asp-action="Edit" asp-route-id="@agence.Id"
+                       class="btn btn-sm btn-warning">@T["Edit"]</a>
+                    <a asp-action="Delete" asp-route-id="@agence.Id"
+                       class="btn btn-sm btn-danger">@T["Delete"]</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@* Pagination *@
+@if (Model.TotalPages > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.Page ? "active" : "")">
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@i"
+                       asp-route-recherche="@Model.Recherche">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}

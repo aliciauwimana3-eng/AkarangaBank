@@ -1,0 +1,35 @@
+@model AkarangaBank.Web.ViewModels.PretListViewModel
+@{
+    ViewData["Title"] = T["Prets"];
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>@T["Prets"]</h1>
+    <a asp-action="Create" class="btn btn-primary">@T["NewLoanRequest"]</a>
+</div>
+@if (TempData["Success"] is string success) { <div class="alert alert-success" role="status" aria-live="polite">@success</div> }
+@if (TempData["Error"] is string error) { <div class="alert alert-danger" role="alert" aria-live="assertive">@error</div> }
+@if (Model.PeutValider) { <form asp-action="MettreAJourRetards" method="post" class="mb-3"><button class="btn btn-outline-warning" type="submit">@T["DetectLatePayments"]</button></form> }
+<div class="table-responsive"><table role="table" aria-label="@T["Prets"]" class="table table-striped align-middle">
+    <thead><tr><th scope="col">@T["Reference"]</th><th scope="col">@T["Client"]</th><th scope="col">@T["Amount"]</th><th scope="col">@T["InterestRate"]</th><th scope="col">@T["Duration"]</th><th scope="col">@T["MonthlyPayment"]</th><th scope="col">@T["Status"]</th><th scope="col">@T["Actions"]</th></tr></thead>
+    <tbody>
+    @foreach (var p in Model.Prets)
+    {
+        <tr>
+            <td><a asp-action="Details" asp-route-id="@p.Id">@p.Reference</a></td>
+            <td>@p.Client.Nom @p.Client.Prenom<br /><small>@p.CompteDebit.NumeroCompte</small></td>
+            <td>@p.MontantPrincipal.ToString("N2") @p.CompteDebit.Devise</td>
+            <td>@p.TauxInteret.ToString("N2") %</td><td>@p.DureeMois mois</td>
+            <td>@p.Mensualite.ToString("N2") @p.CompteDebit.Devise</td>
+            <td><span class="badge @(p.Statut == "Valide" ? "bg-success" : p.Statut == "Rejete" ? "bg-danger" : "bg-warning text-dark")">@p.Statut</span></td>
+            <td>
+                @if (Model.PeutValider && p.Statut == "EnAttente")
+                {
+                    <form asp-action="Approuver" asp-route-id="@p.Id" method="post" class="d-inline"><label class="visually-hidden" for="taux-@p.Id">Taux personnalisé (%)</label><input id="taux-@p.Id" name="tauxPersonnalise" type="number" min="0" max="100" step="0.01" value="@p.TauxInteret" aria-label="@T["ApproveRate"]"/><button class="btn btn-sm btn-success" type="submit">@T["Approve"]</button></form>
+                    <form asp-action="Rejeter" asp-route-id="@p.Id" method="post" class="d-inline"><label class="visually-hidden" for="motif-@p.Id">@T["RejectionReason"]</label><input id="motif-@p.Id" name="motifRejet" type="text" required maxlength="500" placeholder="@T["RejectionReasonPlaceholder"]"/><button class="btn btn-sm btn-outline-danger" type="submit">@T["Reject"]</button></form>
+                }
+            </td>
+        </tr>
+    }
+    @if (Model.Prets.Count == 0) { <tr><td colspan="8" class="text-center text-muted">@T["NoLoanRequests"]</td></tr> }
+    </tbody>
+</table></div>

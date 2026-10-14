@@ -1,0 +1,54 @@
+﻿@page
+@model EnableAuthenticatorModel
+@inject AkarangaBank.Web.Services.IQrCodeService QrCodeService
+@{
+    ViewData["Title"] = "Configurer l'application d'authentification";
+    ViewData["ActivePage"] = ManageNavPages.TwoFactorAuthentication;
+    var qrBase64 = QrCodeService.GenerateQrCodeBase64(Model.AuthenticatorUri);
+}
+
+<partial name="_StatusMessage" for="StatusMessage" />
+<h3>@ViewData["Title"]</h3>
+<div>
+    <p>Pour utiliser une application d'authentification, suivez ces étapes :</p>
+    <ol class="list">
+        <li>
+            <p>
+                Installez une application d'authentification sur votre téléphone, par exemple
+                Microsoft Authenticator ou Google Authenticator.
+            </p>
+        </li>
+        <li>
+            <p>
+                Scannez le QR code ci-dessous, ou saisissez cette clé dans l'application :
+                <kbd>@Model.SharedKey</kbd> (les espaces et la casse n'ont pas d'importance).
+            </p>
+            <div class="mb-3">
+                <img src="data:image/png;base64,@qrBase64" alt="QR code d'authentification à deux facteurs" width="220" height="220" />
+            </div>
+        </li>
+        <li>
+            <p>
+                Une fois le QR code scanné, l'application affiche un code à 6 chiffres.
+                Saisissez-le ci-dessous pour confirmer.
+            </p>
+            <div class="row">
+                <div class="col-md-6">
+                    <form id="send-code" method="post">
+                        <div class="form-floating mb-3">
+                            <input asp-for="Input.Code" class="form-control" autocomplete="off" placeholder="Saisissez le code." />
+                            <label asp-for="Input.Code" class="control-label form-label">Code de vérification</label>
+                            <span asp-validation-for="Input.Code" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="w-100 btn btn-lg btn-primary">Vérifier</button>
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    </form>
+                </div>
+            </div>
+        </li>
+    </ol>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

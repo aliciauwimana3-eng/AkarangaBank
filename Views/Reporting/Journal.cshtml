@@ -1,0 +1,12 @@
+@model IReadOnlyList<AkarangaBank.Web.ViewModels.JournalReportRow>
+@{ ViewData["Title"] = "Journal comptable"; Layout = "_LayoutPrint"; }
+<div class="container py-4">
+  <h1>Journal comptable</h1>
+  <form method="get" class="row g-2 mb-3 no-print"><div class="col-auto"><label class="form-label">Du</label><input type="date" name="du" value="@ViewBag.Du" class="form-control" /></div><div class="col-auto"><label class="form-label">Au</label><input type="date" name="au" value="@ViewBag.Au" class="form-control" /></div><div class="col-auto align-self-end"><button class="btn btn-primary">Filtrer</button></div></form>
+  <p>@ViewBag.Total lignes; 50 par page. <a asp-action="ExportJournalExcel" asp-route-du="@ViewBag.Du" asp-route-au="@ViewBag.Au">Excel</a> · <a asp-action="ExportJournalCsv" asp-route-du="@ViewBag.Du" asp-route-au="@ViewBag.Au">CSV</a> · <button class="btn btn-link no-print" onclick="window.print()">Imprimer</button></p>
+  <div class="table-responsive"><table class="table table-sm table-striped"><thead><tr><th>Date</th><th>Référence</th><th>Client</th><th>Compte</th><th>Opération</th><th>Débit</th><th>Crédit</th><th>Devise</th></tr></thead><tbody>
+  @foreach(var r in Model){<tr><td>@r.Date.ToString("dd/MM/yyyy HH:mm")</td><td>@r.Reference <a class="no-print" asp-action="RecuOperationPdf" asp-route-operationId="@r.OperationId" title="Télécharger le reçu PDF">PDF</a></td><td>@r.Client</td><td>@r.Account</td><td>@r.Type</td><td>@r.Debit.ToString("N2")</td><td>@r.Credit.ToString("N2")</td><td>@r.Currency</td></tr>}
+  </tbody></table></div>
+  @{ var p = (int)ViewBag.Page; var total = (int)ViewBag.Total; }
+  <div class="no-print"><a class="btn btn-outline-primary @(p<=1?"disabled":"")" asp-route-page="@(p-1)" asp-route-du="@ViewBag.Du" asp-route-au="@ViewBag.Au">Précédent</a> <span>Page @p / @Math.Max(1, (int)Math.Ceiling(total / 50d))</span> <a class="btn btn-outline-primary @((p*50>=total)?"disabled":"")" asp-route-page="@(p+1)" asp-route-du="@ViewBag.Du" asp-route-au="@ViewBag.Au">Suivant</a></div>
+</div>

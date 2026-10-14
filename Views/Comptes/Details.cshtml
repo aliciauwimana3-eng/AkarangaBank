@@ -1,0 +1,67 @@
+@model AkarangaBank.Web.ViewModels.CompteDetailsViewModel
+@{
+    ViewData["Title"] = "Détails du compte";
+}
+
+<h1>@T["Comptes"] @Model.Compte.NumeroCompte</h1>
+@if (User.IsInRole("admin") || User.IsInRole("gestionnaire") || User.IsInRole("auditeur")) { <p><a asp-controller="Reporting" asp-action="AttestationSoldePdf" asp-route-compteId="@Model.Compte.Id" class="btn btn-outline-secondary">Télécharger l'attestation de solde PDF</a></p> }
+<p><a asp-controller="Comptabilite" asp-action="Releve" asp-route-compteId="@Model.Compte.Id" class="btn btn-outline-primary">Afficher le relevé complet</a></p>
+
+<dl class="row">
+    <dt class="col-sm-3">Client</dt>
+    <dd class="col-sm-9">
+        <a asp-controller="Clients" asp-action="Details" asp-route-id="@Model.Compte.ClientId">
+            @Model.Compte.Client.Nom @Model.Compte.Client.Prenom
+        </a>
+    </dd>
+
+    <dt class="col-sm-3">Type</dt>
+    <dd class="col-sm-9">@Model.Compte.TypeCompte.Libelle</dd>
+
+    <dt class="col-sm-3">Agence</dt>
+    <dd class="col-sm-9">@Model.Compte.Agence.Code — @Model.Compte.Agence.Ville</dd>
+
+    <dt class="col-sm-3">Solde</dt>
+    <dd class="col-sm-9"><strong>@Model.Compte.Solde.ToString("N2") @Model.Compte.Devise</strong></dd>
+
+    <dt class="col-sm-3">Statut</dt>
+    <dd class="col-sm-9">@Model.Compte.Statut</dd>
+
+    <dt class="col-sm-3">Date d'ouverture</dt>
+    <dd class="col-sm-9">@Model.Compte.DateOuverture.ToString("dd/MM/yyyy")</dd>
+</dl>
+
+<h2>Dernières écritures</h2>
+
+@if (!Model.Ecritures.Any())
+{
+    <p class="text-muted">Aucune écriture enregistrée.</p>
+}
+else
+{
+    <table role="table" aria-label="Comptes Details" class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Opération</th>
+                <th scope="col">Sens</th>
+                <th scope="col" class="text-end">Montant</th>
+                <th scope="col">Libellé</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var e in Model.Ecritures)
+        {
+            <tr>
+                <td>@e.DateEcriture.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@e.Operation.Reference</td>
+                <td>@e.Sens</td>
+                <td class="text-end">@e.Montant.ToString("N2") @e.Devise</td>
+                <td>@e.Libelle</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+<a asp-action="Index" class="btn btn-secondary">Retour à la liste</a>

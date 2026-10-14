@@ -1,0 +1,9 @@
+@model IReadOnlyList<AkarangaBank.Web.ViewModels.BalanceReportRow>
+@{ ViewData["Title"] = "Balance générale"; Layout = "_LayoutPrint"; var totals=(IEnumerable<dynamic>)ViewBag.TotalsByCurrency; }
+<div class="container py-4">
+  <h1>Balance générale</h1>
+  <form method="get" class="row g-2 mb-3 no-print"><div class="col-auto"><label class="form-label">Du</label><input type="date" name="du" class="form-control" /></div><div class="col-auto"><label class="form-label">Au</label><input type="date" name="au" class="form-control" /></div><div class="col-auto align-self-end"><button class="btn btn-primary">Filtrer</button></div></form>
+  <p>Totaux par devise:</p><ul>@foreach(var t in totals){<li>@t.Currency — Débit: @((decimal)t.Debit).ToString("N2"), Crédit: @((decimal)t.Credit).ToString("N2"), différence: @(((decimal)t.Debit-(decimal)t.Credit).ToString("N2"))</li>}</ul>
+  <p class="no-print"><a asp-action="ExportBalanceExcel">Exporter en Excel</a> · <button class="btn btn-link" onclick="window.print()">Imprimer</button></p>
+  <div class="table-responsive"><table class="table table-striped"><thead><tr><th>Compte</th><th>Libellé</th><th>Devise</th><th>Débit</th><th>Crédit</th><th>Solde (D-C)</th></tr></thead><tbody>@foreach(var r in Model){<tr><td>@r.Account</td><td>@r.Label</td><td>@r.Currency</td><td>@r.Debit.ToString("N2")</td><td>@r.Credit.ToString("N2")</td><td>@r.Balance.ToString("N2")</td></tr>}</tbody></table></div>
+</div>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AkarangaBank.Web</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AkarangaBank.Web.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <a class="skip-link" href="#main-content">@T["SkipToContent"]</a>
+
+    <aside class="akaranga-sidebar">
+        <div class="d-flex align-items-center justify-content-between">
+            <a class="sidebar-brand" asp-area="" asp-controller="Home" asp-action="Index">AkarangaBank</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+                    aria-controls="sidebarMenu" aria-expanded="false" aria-label="@T["ToggleNavigation"]">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div id="sidebarMenu" class="collapse d-lg-block mt-3">
+            <ul class="nav flex-column">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    var estPersonnel = User.IsInRole("admin") || User.IsInRole("gestionnaire") || User.IsInRole("guichetier");
+
+                    @await Component.InvokeAsync("NotificationBell")
+
+                    <li class="nav-item"><a class="nav-link" asp-controller="Documents" asp-action="Index">@T["Documents"]</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Agences" asp-action="Index">@T["Agences"]</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Comptes" asp-action="Index">@T["Comptes"]</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Virements" asp-action="Index">@T["Virements"]</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Operations" asp-action="Index">@T["Operations"]</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Prets" asp-action="Index">@T["Prets"]</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Cartes" asp-action="Index">@T["Cartes"]</a></li>
+
+                    @if (estPersonnel)
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Clients" asp-action="Index">@T["Clients"]</a></li>
+                    }
+
+                    @if (User.IsInRole("admin") || User.IsInRole("gestionnaire") || User.IsInRole("auditeur"))
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Comptabilite" asp-action="Journal">@T["Journal"]</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="Reporting" asp-action="Index">Reporting</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="AlertesAML" asp-action="Index">@T["AlertesAML"]</a></li>
+                    }
+                    @if (User.IsInRole("admin") || User.IsInRole("auditeur"))
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="AuditLogs" asp-action="Index">@T["JournalAudit"]</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Comptabilite" asp-action="VerifierEquilibre">@T["ControleComptable"]</a></li>
+                    }
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Conformite" asp-action="Seuils">@T["SeuilsAML"]</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="AdminUtilisateurs" asp-action="Index">@T["Utilisateurs"]</a></li>
+                    }
+                }
+            </ul>
+
+            <hr class="sidebar-sep" />
+
+            <div class="sidebar-bottom">
+                <partial name="_LoginPartial" />
+                <partial name="_LanguageSelector" />
+            </div>
+        </div>
+    </aside>
+
+    <div class="page-wrap">
+        <div class="container-fluid px-4 pt-3">
+            <main id="main-content" role="main" tabindex="-1" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container-fluid px-4">
+                &copy; 2026 - AkarangaBank.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">@T["Privacy"]</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

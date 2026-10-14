@@ -1,0 +1,15 @@
+@using AkarangaBank.Web.ViewModels
+@{ ViewData["Title"] = "Tableau de bord"; Layout = "_LayoutPrint"; var d = (DashboardReport)ViewBag.Dashboard; }
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center"><h1>Reporting bancaire</h1><button class="btn btn-outline-secondary no-print" onclick="window.print()">Imprimer</button></div>
+  <p class="text-muted">Indicateurs au @DateTime.Today.ToString("dd/MM/yyyy")</p>
+  <div class="row g-3">
+    <div class="col-md-4"><div class="card p-3"><span>Clients</span><strong class="fs-3">@d.Clients</strong></div></div>
+    <div class="col-md-4"><div class="card p-3"><span>Comptes</span><strong class="fs-3">@d.Accounts</strong></div></div>
+    <div class="col-md-4"><div class="card p-3"><span>Total des soldes BIF</span><strong class="fs-3">@d.TotalBalance.ToString("N0") BIF</strong></div></div>
+    <div class="col-md-4"><div class="card p-3"><span>Opérations aujourd'hui</span><strong class="fs-3">@d.OperationsToday</strong></div></div>
+    <div class="col-md-4"><div class="card p-3"><span>Prêts validés</span><strong class="fs-3">@d.ActiveLoans</strong></div></div>
+    <div class="col-md-4"><div class="card p-3"><span>Alertes AML ouvertes</span><strong class="fs-3">@d.OpenAmlAlerts</strong></div></div>
+  </div>
+  <nav class="mt-4 d-flex gap-2 flex-wrap"><a class="btn btn-primary" asp-action="Journal">Journal</a><a class="btn btn-primary" asp-action="Balance">Balance</a><a class="btn btn-primary" asp-action="EtatsFinanciers">Compte de résultat et bilan</a><a class="btn btn-primary" asp-action="Aml">Rapport AML</a><a class="btn btn-outline-primary" asp-action="ExportPortfolioPretsExcel">Exporter portefeuille prêts (Excel)</a></nav>
+</div>

@@ -1,0 +1,32 @@
+@model IReadOnlyList<AkarangaBank.Web.Models.Document>
+@{
+    ViewData["Title"] = "Documents";
+}
+
+<h1>Documents</h1>
+<p>Les documents actifs et archives sont affiches. Les acces au telechargement sont traces.</p>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead><tr><th scope="col">Nom</th><th scope="col">Categorie</th><th scope="col">Version</th><th scope="col">Statut</th><th scope="col">Date</th><th scope="col">Actions</th></tr></thead>
+        <tbody>
+        @foreach (var document in Model)
+        {
+            <tr>
+                <td>@document.NomOriginal</td><td>@document.Categorie</td><td>@document.Version</td><td>@document.Statut</td><td>@document.DateCreation.ToLocalTime().ToString("g")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@document.Id" class="btn btn-sm btn-outline-secondary">Details</a>
+                    <a asp-action="Telecharger" asp-route-id="@document.Id" class="btn btn-sm btn-outline-primary">Telecharger</a>
+                    @if (User.IsInRole("admin") || User.IsInRole("gestionnaire"))
+                    {
+                        @if (document.Statut == "Actif")
+                        {
+                            <form asp-action="Archiver" asp-route-id="@document.Id" method="post" class="d-inline"><button class="btn btn-sm btn-outline-secondary" type="submit">Archiver</button></form>
+                        }
+                        <form asp-action="Supprimer" asp-route-id="@document.Id" method="post" class="d-inline"><button class="btn btn-sm btn-outline-danger" type="submit">Supprimer</button></form>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

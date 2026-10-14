@@ -1,0 +1,16 @@
+@model AkarangaBank.Web.ViewModels.ReleveViewModel
+@{
+    ViewData["Title"] = T["AccountStatement"];
+}
+<h1>@T["AccountStatement"]</h1>
+<p><strong>@Model.Compte.NumeroCompte</strong> — @Model.Compte.Client.Nom @Model.Compte.Client.Prenom</p>
+<div class="row mb-3"><div class="col-md-4"><div class="card card-body"><span class="text-muted">@T["InitialBalance"]</span><strong>@Model.SoldeInitial.ToString("N2") @Model.Compte.Devise</strong></div></div><div class="col-md-4"><div class="card card-body"><span class="text-muted">@T["FinalBalance"]</span><strong>@Model.SoldeFinal.ToString("N2") @Model.Compte.Devise</strong></div></div></div>
+<div class="table-responsive"><table role="table" aria-label="@T["AccountStatement"]" class="table table-striped"><thead><tr><th scope="col">@T["Date"]</th><th scope="col">@T["Reference"]</th><th scope="col">@T["Details"]</th><th scope="col">Débit</th><th scope="col">Crédit</th></tr></thead><tbody>
+@foreach (var e in Model.Ecritures)
+{
+    <tr><td>@e.DateEcriture.ToLocalTime().ToString("g")</td><td>@e.Operation.Reference</td><td>@e.Libelle</td><td>@(e.Sens == "Debit" ? e.Montant.ToString("N2") : "—")</td><td>@(e.Sens == "Credit" ? e.Montant.ToString("N2") : "—")</td></tr>
+}
+@if (Model.Ecritures.Count == 0) { <tr><td colspan="5" class="text-center text-muted">@T["NoLedgerEntries"]</td></tr> }
+</tbody></table></div>
+<a asp-controller="Comptes" asp-action="Details" asp-route-id="@Model.Compte.Id" class="btn btn-secondary">@T["BackToAccount"]</a>
+<a asp-controller="Reporting" asp-action="RelevePdf" asp-route-compteId="@Model.Compte.Id" class="btn btn-outline-primary no-print">Télécharger le PDF A4</a>

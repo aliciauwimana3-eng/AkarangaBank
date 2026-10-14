@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: ${MSSQL_SA_PASSWORD:?Set MSSQL_SA_PASSWORD in .env}
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q \"SELECT 1\" || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 30s
+
+  web:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      Database__ApplyMigrationsOnStartup: "true"
+      AllowedHosts: "akaranga.bi;www.akaranga.bi;localhost;127.0.0.1"
+      ConnectionStrings__AkarangaBank: "Server=db;Database=AkarangaBank;User Id=sa;Password=${MSSQL_SA_PASSWORD};Encrypt=True;TrustServerCertificate=True;"
+      AdminInitial__Email: ${ADMIN_INITIAL_EMAIL:?Set ADMIN_INITIAL_EMAIL in .env}
+      AdminInitial__Password: ${ADMIN_INITIAL_PASSWORD:?Set ADMIN_INITIAL_PASSWORD in .env}
+      ForwardedHeaders__KnownProxies__0: ${FORWARDED_PROXY_IP:-127.0.0.1}
+    ports:
+      - "8080:8080"
+    volumes:
+      - akaranga_app_data:/app/App_Data
+
+volumes:
+  mssql_data:
+  akaranga_app_data:

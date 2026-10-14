@@ -1,0 +1,12 @@
+.git
+.vs
+.vscode
+.codex
+bin
+obj
+tests
+publish
+coverage
+TestResults
+.env
+*.user

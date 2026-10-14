@@ -1,0 +1,49 @@
+@model AkarangaBank.Web.ViewModels.CompteCreateViewModel
+@{
+    ViewData["Title"] = T["OpenAccountAction"];
+}
+
+<h1>@T["OpenAccountAction"]</h1>
+
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+    <div class="mb-3">
+        <label asp-for="NumeroCompte" class="form-label"></label>
+        <input asp-for="NumeroCompte" class="form-control" placeholder="BJM-0006-0001" />
+        <span asp-validation-for="NumeroCompte" class="text-danger" role="alert"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ClientId" class="form-label"></label>
+        <select asp-for="ClientId" asp-items="ViewBag.Clients" class="form-select">
+            <option value="">-- Sélectionner un client --</option>
+        </select>
+        <span asp-validation-for="ClientId" class="text-danger" role="alert"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="TypeCompteId" class="form-label"></label>
+        <select asp-for="TypeCompteId" asp-items="ViewBag.TypesCompte" class="form-select">
+            <option value="">-- Sélectionner un type --</option>
+        </select>
+        <span asp-validation-for="TypeCompteId" class="text-danger" role="alert"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="AgenceId" class="form-label"></label>
+        <select asp-for="AgenceId" asp-items="ViewBag.Agences" class="form-select">
+            <option value="">-- Sélectionner une agence --</option>
+        </select>
+        <span asp-validation-for="AgenceId" class="text-danger" role="alert"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SoldeInitial" class="form-label"></label>
+        <input asp-for="SoldeInitial" class="form-control" />
+        <span asp-validation-for="SoldeInitial" class="text-danger" role="alert"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">@T["OpenAccountAction"]</button>
+    <a asp-action="Index" class="btn btn-secondary">@T["Cancel"]</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

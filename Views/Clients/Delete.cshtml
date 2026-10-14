@@ -1,0 +1,37 @@
+@model AkarangaBank.Web.ViewModels.ClientDetailsViewModel
+@{
+    ViewData["Title"] = T["Delete"] + " " + T["Clients"] + "?";
+}
+
+<h1>@T["Delete"] @T["Clients"]</h1>
+
+<div class="alert alert-warning" role="status" aria-live="polite">
+    Confirmez-vous la suppression de ce client ?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-3">Numéro client</dt>
+    <dd class="col-sm-9">@Model.Client.NumeroClient</dd>
+
+    <dt class="col-sm-3">Nom complet</dt>
+    <dd class="col-sm-9">@Model.Client.Nom @Model.Client.Prenom</dd>
+
+    <dt class="col-sm-3">CNI</dt>
+    <dd class="col-sm-9">@Model.Client.NumeroCNI</dd>
+
+    <dt class="col-sm-3">Comptes</dt>
+    <dd class="col-sm-9">@Model.Comptes.Count()</dd>
+</dl>
+
+@if (Model.Comptes.Any())
+{
+    <div class="alert alert-danger" role="alert" aria-live="assertive">
+        Ce client possède @Model.Comptes.Count() compte(s). La suppression sera refusée.
+    </div>
+}
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Client.Id" name="id" />
+    <button type="submit" class="btn btn-danger">@T["Delete"]</button>
+    <a asp-action="Index" class="btn btn-secondary">@T["Cancel"]</a>
+</form>

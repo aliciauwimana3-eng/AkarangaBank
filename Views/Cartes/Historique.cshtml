@@ -1,0 +1,13 @@
+@model IReadOnlyList<AkarangaBank.Web.Models.TransactionCarte>
+@{ ViewData["Title"] = T["CardHistory"]; }
+<h1>@T["CardHistory"]</h1>
+<table class="table table-striped" role="table" aria-label="Historique des transactions de la carte">
+    <thead><tr><th scope="col">Date</th><th scope="col">Type</th><th scope="col">Montant</th><th scope="col">Statut</th><th scope="col">Motif</th><th scope="col">Opération</th></tr></thead>
+    <tbody>
+    @foreach (var t in Model)
+    {
+        <tr><td>@t.DateTransaction.ToLocalTime().ToString("g")</td><td>@t.TypeTransaction</td><td>@t.Montant.ToString("N2")</td><td>@t.Statut</td><td>@t.MotifRefus</td><td>@t.Operation?.Reference</td></tr>
+    }
+    </tbody>
+</table>
+<a asp-action="Index" class="btn btn-secondary">@T["BackCards"]</a>

@@ -1,0 +1,35 @@
+@model AkarangaBank.Web.ViewModels.AlerteAMLListViewModel
+@{
+    ViewData["Title"] = T["AlertesAML"];
+}
+<h1>@T["AlertesAML"]</h1>
+<a asp-action="ExporterDeclarationsCNRF" class="btn btn-outline-primary mb-3">@T["ExportAML"]</a>
+@if (TempData["Success"] is string success) { <div class="alert alert-success" role="status" aria-live="polite">@success</div> }
+@if (TempData["Error"] is string error) { <div class="alert alert-danger" role="alert" aria-live="assertive">@error</div> }
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3"><select name="statut" class="form-select"><option value="">@T["AllStatuses"]</option>@foreach (var s in new[] { "Ouverte", "EnCours", "Traitee", "Classee" }) { <option value="@s" selected="@(Model.Statut == s)">@s</option> }</select></div>
+    <div class="col-md-3"><select name="niveau" class="form-select"><option value="">@T["AllLevels"]</option>@foreach (var n in new[] { "Faible", "Moyen", "Eleve", "Critique" }) { <option value="@n" selected="@(Model.Niveau == n)">@n</option> }</select></div>
+    <div class="col-auto"><button class="btn btn-outline-primary" type="submit">@T["Filter"]</button></div>
+</form>
+<div class="table-responsive"><table role="table" aria-label="@T["AlertesAML"]" class="table table-striped align-middle">
+    <thead><tr><th scope="col">@T["Date"]</th><th scope="col">@T["Client"]</th><th scope="col">@T["Type"]</th><th scope="col">@T["Status"]</th><th scope="col">@T["Details"]</th><th scope="col">@T["Status"]</th><th scope="col">@T["Actions"]</th></tr></thead>
+    <tbody>
+    @foreach (var a in Model.Alertes)
+    {
+        <tr><td>@a.DateAlerte.ToLocalTime().ToString("g")</td><td>@a.Client.Nom @a.Client.Prenom</td><td>@a.TypeAlerte</td>
+            <td><span class="badge @(a.Niveau is "Eleve" or "Critique" ? "bg-danger" : "bg-warning text-dark")">@a.Niveau</span></td>
+            <td style="white-space:pre-line">@a.Description</td><td>@a.Statut</td><td>
+            <a class="btn btn-sm btn-outline-secondary mb-1" asp-controller="Reporting" asp-action="DeclarationCnrFPdf" asp-route-alerteId="@a.Id">Dossier CNRF PDF</a>
+            @if (User.IsInRole("admin") || User.IsInRole("gestionnaire"))
+            {
+                <form asp-action="Traiter" asp-route-id="@a.Id" method="post" class="d-flex gap-1">
+    <div class="col-md-3"><select name="statut" class="form-select"><option value="">@T["AllStatuses"]</option>@foreach (var s in new[] { "Ouverte", "EnCours", "Traitee", "Classee" }) { <option value="@s" selected="@(Model.Statut == s)">@s</option> }</select></div>
+                    <input name="commentaire" class="form-control form-control-sm" placeholder="@T["Note"]" />
+                    <button type="submit" class="btn btn-sm btn-primary">@T["Save"]</button>
+                </form>
+            }
+        </td></tr>
+    }
+    @if (Model.Alertes.Count == 0) { <tr><td colspan="7" class="text-center text-muted">@T["NoAMLAlerts"]</td></tr> }
+    </tbody>
+</table></div>

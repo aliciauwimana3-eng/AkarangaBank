@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Agences" xml:space="preserve">
+    <value>Matawi</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Wateja</value>
+  </data>
+  <data name="Comptes" xml:space="preserve">
+    <value>Hesabu</value>
+  </data>
+  <data name="Virements" xml:space="preserve">
+    <value>Uhamisho</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>Shughuli</value>
+  </data>
+  <data name="Prets" xml:space="preserve">
+    <value>Mikopo</value>
+  </data>
+  <data name="Cartes" xml:space="preserve">
+    <value>Kadi</value>
+  </data>
+  <data name="Journal" xml:space="preserve">
+    <value>Daftari la hesabu</value>
+  </data>
+  <data name="AlertesAML" xml:space="preserve">
+    <value>Arifa za AML</value>
+  </data>
+  <data name="JournalAudit" xml:space="preserve">
+    <value>Daftari la ukaguzi</value>
+  </data>
+  <data name="ControleComptable" xml:space="preserve">
+    <value>Udhibiti wa hesabu</value>
+  </data>
+  <data name="SeuilsAML" xml:space="preserve">
+    <value>Viwango vya AML</value>
+  </data>
+  <data name="Utilisateurs" xml:space="preserve">
+    <value>Watumiaji</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Faragha</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Lugha</value>
+  </data>
+  <data name="ApplyLanguage" xml:space="preserve">
+    <value>Tumia</value>
+  </data>
+  <data name="SkipToContent" xml:space="preserve">
+    <value>Ruka hadi maudhui makuu</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Karibu</value>
+  </data>
+  <data name="HomeDescription" xml:space="preserve">
+    <value>Simamia shughuli zako za benki kwa usalama.</value>
+  </data>
+  <data name="TitleBankAccounts" xml:space="preserve">
+    <value>Hesabu za benki</value>
+  </data>
+  <data name="NewClient" xml:space="preserve">
+    <value>+ Mteja mpya</value>
+  </data>
+  <data name="OpenAccount" xml:space="preserve">
+    <value>+ Fungua akaunti</value>
+  </data>
+  <data name="NewTransfer" xml:space="preserve">
+    <value>Uhamisho mpya</value>
+  </data>
+  <data name="NewTransaction" xml:space="preserve">
+    <value>Shughuli mpya</value>
+  </data>
+  <data name="NewLoanRequest" xml:space="preserve">
+    <value>Ombi jipya la mkopo</value>
+  </data>
+  <data name="IssueCard" xml:space="preserve">
+    <value>Toa kadi</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Chuja</value>
+  </data>
+  <data name="ExportCsv" xml:space="preserve">
+    <value>Hamisha CSV</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Vitendo</value>
+  </data>
+  <data name="ClientNumber" xml:space="preserve">
+    <value>Nambari</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Jina la kwanza</value>
+  </data>
+  <data name="NationalId" xml:space="preserve">
+    <value>Nambari ya kitambulisho</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Hali</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Rejea</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Kiasi</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Tarehe</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Aina</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Mteja</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Akaunti</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Chanzo</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Mpokeaji</value>
+  </data>
+  <data name="InterestRate" xml:space="preserve">
+    <value>Kiwango</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Muda</value>
+  </data>
+  <data name="MonthlyPayment" xml:space="preserve">
+    <value>Malipo ya mwezi</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Maelezo</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Hariri</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Futa</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Idhinisha</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Kataa</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Historia</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>Zuia</value>
+  </data>
+  <data name="Renew" xml:space="preserve">
+    <value>Fanya upya</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Idhinisha</value>
+  </data>
+  <data name="DetectLatePayments" xml:space="preserve">
+    <value>Tambua malipo yaliyochelewa</value>
+  </data>
+  <data name="NoTransfers" xml:space="preserve">
+    <value>Hakuna uhamisho uliorekodiwa.</value>
+  </data>
+  <data name="NoTransactions" xml:space="preserve">
+    <value>Hakuna shughuli zilizorekodiwa.</value>
+  </data>
+  <data name="NoLoanRequests" xml:space="preserve">
+    <value>Hakuna maombi ya mkopo.</value>
+  </data>
+  <data name="LoanSchedule" xml:space="preserve">
+    <value>Ratiba ya marejesho</value>
+  </data>
+  <data name="DailyOnlineLimit" xml:space="preserve">
+    <value>Kikomo cha malipo ya mtandaoni kwa siku</value>
+  </data>
+  <data name="BackCards" xml:space="preserve">
+    <value>Rudi kwenye kadi</value>
+  </data>
+  <data name="Repay" xml:space="preserve">
+    <value>Lipa</value>
+  </data>
+  <data name="CardHistory" xml:space="preserve">
+    <value>Historia ya miamala ya kadi</value>
+  </data>
+  <data name="DailyPaymentLimit" xml:space="preserve">
+    <value>Kikomo cha malipo kwa siku</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Hifadhi</value>
+  </data>
+  <data name="ChooseType" xml:space="preserve">
+    <value>Chagua aina</value>
+  </data>
+  <data name="LoanRequest" xml:space="preserve">
+    <value>Ombi la mkopo</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Chagua</value>
+  </data>
+  <data name="SelectAccount" xml:space="preserve">
+    <value>Chagua akaunti</value>
+  </data>
+  <data name="LoanIntro" xml:space="preserve">
+    <value>Mkopo utawe kwenye akaunti iliyochaguliwa baada ya kuidhinishwa na msimamizi.</value>
+  </data>
+  <data name="BackLoans" xml:space="preserve">
+    <value>Rudi kwenye mikopo</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Ghairi</value>
+  </data>
+  <data name="DailyWithdrawalLimit" xml:space="preserve">
+    <value>Kikomo cha kutoa kwa siku</value>
+  </data>
+  <data name="LoanDetails" xml:space="preserve">
+    <value>Maelezo ya mkopo</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Unda</value>
+  </data>
+  <data name="OpenAccountAction" xml:space="preserve">
+    <value>Fungua akaunti</value>
+  </data>
+  <data name="SubmitRequest" xml:space="preserve">
+    <value>Tuma ombi</value>
+  </data>
+  <data name="SaveTransaction" xml:space="preserve">
+    <value>Hifadhi muamala</value>
+  </data>
+  <data name="OperationIntro" xml:space="preserve">
+    <value>Muamala utaingizwa baada ya kuidhinishwa na msimamizi.</value>
+  </data>
+  <data name="SearchBranches" xml:space="preserve">
+    <value>Tafuta kwa msimbo, jina au mji...</value>
+  </data>
+  <data name="SaveTransfer" xml:space="preserve">
+    <value>Hifadhi uhamisho</value>
+  </data>
+  <data name="NewOperation" xml:space="preserve">
+    <value>Shughuli mpya</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Tafuta</value>
+  </data>
+  <data name="NewAgency" xml:space="preserve">
+    <value>+ Tawi jipya</value>
+  </data>
+  <data name="HeadOffice" xml:space="preserve">
+    <value>Makao makuu</value>
+  </data>
+  <data name="AgencyResults" xml:space="preserve">
+    <value>tawi yamepatikana.</value>
+  </data>
+  <data name="InterbankTransferNotice" xml:space="preserve">
+    <value>Baada ya kuidhinishwa, kiasi kitawekwa kwenye akaunti ya malipo ya benki kati.</value>
+  </data>
+  <data name="TransferIntro" xml:space="preserve">
+    <value>Uhamisho utashughulikiwa baada ya kuidhinishwa na msimamizi.</value>
+  </data>
+  <data name="ToggleNavigation" xml:space="preserve">
+    <value>Onyesha au ficha menyu</value>
+  </data>
+  <data name="EditAgency" xml:space="preserve">
+    <value>Hariri tawi</value>
+  </data>
+  <data name="EditClient" xml:space="preserve">
+    <value>Hariri mteja</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Sera ya faragha</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>Mtumiaji mpya</value>
+  </data>
+  <data name="VerificationKYC" xml:space="preserve">
+    <value>Uhakiki mpya wa KYC</value>
+  </data>
+  <data name="EditAccount" xml:space="preserve">
+    <value>Hariri akaunti</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Weka upya nenosiri</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Malipo</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Aina ya muamala</value>
+  </data>
+  <data name="Loss" xml:space="preserve">
+    <value>Imepotea</value>
+  </data>
+  <data name="DailyLimits" xml:space="preserve">
+    <value>Vikomo vya siku (utoaji, malipo, mtandaoni)</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Utoaji</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Nyingine</value>
+  </data>
+  <data name="TransactionAmount" xml:space="preserve">
+    <value>Kiasi cha muamala</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Mtandaoni</value>
+  </data>
+  <data name="Theft" xml:space="preserve">
+    <value>Imeibwa</value>
+  </data>
+  <data name="ApproveRate" xml:space="preserve">
+    <value>Kiwango maalum (%)</value>
+  </data>
+  <data name="Expiration" xml:space="preserve">
+    <value>Muda wa mwisho</value>
+  </data>
+  <data name="OppositionReason" xml:space="preserve">
+    <value>Sababu ya kuzuia</value>
+  </data>
+  <data name="Fraud" xml:space="preserve">
+    <value>Udanganyifu</value>
+  </data>
+  <data name="RejectionReasonPlaceholder" xml:space="preserve">
+    <value>Sababu ya kukataa</value>
+  </data>
+  <data name="CardNumberMasked" xml:space="preserve">
+    <value>Nambari iliyofichwa</value>
+  </data>
+  <data name="RejectionReason" xml:space="preserve">
+    <value>Sababu ya kukataa inahitajika</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Ondoka</value>
+  </data>
+  <data name="FinalBalance" xml:space="preserve">
+    <value>Salio la mwisho</value>
+  </data>
+  <data name="PrivacyText" xml:space="preserve">
+    <value>Tumia ukurasa huu kueleza sera ya faragha ya tovuti.</value>
+  </data>
+  <data name="TakeCharge" xml:space="preserve">
+    <value>Shughulikia</value>
+  </data>
+  <data name="BalancedEntries" xml:space="preserve">
+    <value>Rekodi za hesabu zimesawazika.</value>
+  </data>
+  <data name="AccountStatement" xml:space="preserve">
+    <value>Taarifa ya akaunti</value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>Baada</value>
+  </data>
+  <data name="AllActions" xml:space="preserve">
+    <value>Vitendo vyote</value>
+  </data>
+  <data name="Before" xml:space="preserve">
+    <value>Kabla</value>
+  </data>
+  <data name="InitialBalance" xml:space="preserve">
+    <value>Salio la mwanzo</value>
+  </data>
+  <data name="NewRecord" xml:space="preserve">
+    <value>mpya</value>
+  </data>
+  <data name="Classify" xml:space="preserve">
+    <value>Panga</value>
+  </data>
+  <data name="BackToAccount" xml:space="preserve">
+    <value>Rudi kwenye akaunti</value>
+  </data>
+  <data name="NoLedgerEntries" xml:space="preserve">
+    <value>Hakuna rekodi za hesabu.</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Mfumo</value>
+  </data>
+  <data name="UnbalancedEntries" xml:space="preserve">
+    <value>Baadhi ya miamala ina tofauti kati ya jumla ya deni na mkopo.</value>
+  </data>
+  <data name="TableAffected" xml:space="preserve">
+    <value>Jedwali lililoathiriwa</value>
+  </data>
+  <data name="AllStatuses" xml:space="preserve">
+    <value>Hali zote</value>
+  </data>
+  <data name="NoAuditEntries" xml:space="preserve">
+    <value>Hakuna rekodi za ukaguzi.</value>
+  </data>
+  <data name="NoAMLAlerts" xml:space="preserve">
+    <value>Hakuna arifa za AML.</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Dokezo</value>
+  </data>
+  <data name="ExportAML" xml:space="preserve">
+    <value>Hamisha matamko ya CNRF (CSV)</value>
+  </data>
+  <data name="Process" xml:space="preserve">
+    <value>Chakata</value>
+  </data>
+  <data name="OpenJournal" xml:space="preserve">
+    <value>Fungua daftari</value>
+  </data>
+  <data name="AllLevels" xml:space="preserve">
+    <value>Viwango vyote</value>
+  </data>
+  <data name="AuditMasked" xml:space="preserve">
+    <value>Taarifa nyeti zimefichwa kwenye kumbukumbu za kabla na baada.</value>
+  </data>
+  <data name="Debit" xml:space="preserve">
+    <value>Deni</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Mkopo</value>
+  </data>
+  <data name="ViewDocument" xml:space="preserve">
+    <value>Tazama hati</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Fungua</value>
+  </data>
+  <data name="KycUploadHelp" xml:space="preserve">
+    <value>PDF, PNG au JPEG; ukubwa usiozidi MB 5.</value>
+  </data>
+  <data name="NoNotifications" xml:space="preserve">
+    <value>Hakuna arifa bado.</value>
+  </data>
+  <data name="MarkRead" xml:space="preserve">
+    <value>Weka kuwa imesomwa</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Arifa</value>
+  </data>
+  <data name="UnreadNotifications" xml:space="preserve">
+    <value>{0} arifa ambazo hazijasomwa</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Nyaraka</value>
+  </data>
+</root>

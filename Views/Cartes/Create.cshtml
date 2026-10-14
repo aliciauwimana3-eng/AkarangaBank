@@ -1,0 +1,13 @@
+@model AkarangaBank.Web.ViewModels.CarteCreateViewModel
+@{ ViewData["Title"] = T["IssueCard"]; }
+<h1>@T["IssueCard"]</h1>
+<div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+<form asp-action="Create" method="post">
+    <div class="mb-3"><label asp-for="CompteId" class="form-label"></label><select asp-for="CompteId" asp-items="ViewBag.Comptes" class="form-select"><option value="">Sélectionner un compte</option></select><span asp-validation-for="CompteId" class="text-danger" role="alert"></span></div>
+    <div class="mb-3"><label asp-for="TypeCarte" class="form-label"></label><select asp-for="TypeCarte" class="form-select"><option value="Visa">Visa</option><option value="MasterCard">MasterCard</option><option value="Locale">Locale</option></select><span asp-validation-for="TypeCarte" class="text-danger" role="alert"></span></div>
+    <div class="mb-3"><label asp-for="PlafondRetraitJournalier" class="form-label">Plafond de retrait par jour</label><input asp-for="PlafondRetraitJournalier" class="form-control" type="number" min="1" step="0.01" /><span asp-validation-for="PlafondRetraitJournalier" class="text-danger" role="alert"></span></div>
+    <div class="mb-3"><label asp-for="PlafondPaiementJournalier" class="form-label">Plafond de paiement par jour</label><input asp-for="PlafondPaiementJournalier" class="form-control" type="number" min="1" step="0.01" /><span asp-validation-for="PlafondPaiementJournalier" class="text-danger" role="alert"></span></div>
+    <div class="mb-3"><label asp-for="PlafondEnLigneJournalier" class="form-label">Plafond de paiement en ligne par jour</label><input asp-for="PlafondEnLigneJournalier" class="form-control" type="number" min="1" step="0.01" /><span asp-validation-for="PlafondEnLigneJournalier" class="text-danger" role="alert"></span></div>
+    <button class="btn btn-primary" type="submit">@T["Create"]</button> <a asp-action="Index" class="btn btn-secondary">@T["Cancel"]</a>
+</form>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

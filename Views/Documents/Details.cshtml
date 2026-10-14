@@ -1,0 +1,33 @@
+@model AkarangaBank.Web.ViewModels.DocumentDetailsViewModel
+@{
+    ViewData["Title"] = "Details du document";
+}
+
+<h1>Details du document</h1>
+<dl class="row">
+    <dt class="col-sm-3">Nom</dt><dd class="col-sm-9">@Model.Document.NomOriginal</dd>
+    <dt class="col-sm-3">Categorie</dt><dd class="col-sm-9">@Model.Document.Categorie</dd>
+    <dt class="col-sm-3">Statut</dt><dd class="col-sm-9">@Model.Document.Statut</dd>
+    <dt class="col-sm-3">Version</dt><dd class="col-sm-9">@Model.Document.Version</dd>
+    <dt class="col-sm-3">Taille</dt><dd class="col-sm-9">@Model.Document.TailleOctets octets</dd>
+    <dt class="col-sm-3">Type MIME</dt><dd class="col-sm-9">@Model.Document.TypeMime</dd>
+    <dt class="col-sm-3">SHA-256</dt><dd class="col-sm-9"><code>@Model.Document.HashSha256</code></dd>
+    <dt class="col-sm-3">Date de depot (UTC)</dt><dd class="col-sm-9">@Model.Document.DateCreation.ToString("u")</dd>
+</dl>
+
+@if (!User.IsInRole("client"))
+{
+    <h2>Historique des acces</h2>
+    <div class="table-responsive">
+        <table class="table table-sm">
+            <thead><tr><th scope="col">Utilisateur</th><th scope="col">Action</th><th scope="col">Date (UTC)</th></tr></thead>
+            <tbody>
+            @foreach (var access in Model.Acces)
+            {
+                <tr><td>@access.Utilisateur.NomComplet</td><td>@access.Action</td><td>@access.DateAcces.ToString("u")</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+<a asp-action="Index" class="btn btn-secondary">Retour</a>

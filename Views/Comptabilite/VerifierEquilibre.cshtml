@@ -1,0 +1,13 @@
+@{
+    ViewData["Title"] = T["ControleComptable"];
+}
+<h1>@T["ControleComptable"]</h1>
+@if ((bool)ViewBag.EstEquilibre)
+{
+    <div class="alert alert-success" role="status" aria-live="polite">@T["BalancedEntries"]</div>
+}
+else
+{
+    <div class="alert alert-danger" role="alert" aria-live="assertive">@T["UnbalancedEntries"]</div>
+}
+<a asp-action="Journal" class="btn btn-outline-primary">@T["OpenJournal"]</a>

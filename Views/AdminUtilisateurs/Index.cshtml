@@ -1,0 +1,63 @@
+@model IEnumerable<AkarangaBank.Web.Models.ApplicationUser>
+@{
+    ViewData["Title"] = T["Utilisateurs"];
+}
+
+<h1>@T["Utilisateurs"]</h1>
+
+@if (TempData["Success"] is string msg)
+{
+    <div class="alert alert-success" role="status" aria-live="polite">@msg</div>
+}
+@if (TempData["Error"] is string err)
+{
+    <div class="alert alert-danger" role="alert" aria-live="assertive">@err</div>
+}
+
+<div class="mb-3 text-end">
+    <a asp-action="Create" class="btn btn-success">+ Nouvel utilisateur</a>
+</div>
+
+<table role="table" aria-label="@T["Utilisateurs"]" class="table table-striped align-middle">
+    <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Rôle</th>
+            <th scope="col">Agence</th>
+            <th scope="col">2FA</th>
+            <th scope="col">Actif</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var u in Model)
+    {
+        <tr>
+            <td>@u.NomComplet</td>
+            <td>@u.Email</td>
+            <td>@u.Role</td>
+            <td>@u.Agence.Code</td>
+            <td>
+                @if (u.TwoFactorEnabled)
+                {
+                    <span class="badge bg-success">Activée</span>
+                }
+                else
+                {
+                    <span class="badge bg-warning text-dark">Inactive</span>
+                }
+            </td>
+            <td>
+                <span class="badge @(u.EstActif ? "bg-success" : "bg-secondary")">@(u.EstActif ? "Oui" : "Non")</span>
+            </td>
+            <td>
+                <form asp-action="ToggleActif" asp-route-id="@u.Id" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-warning">@(u.EstActif ? "Désactiver" : "Activer")</button>
+                </form>
+                <a asp-action="ResetPassword" asp-route-id="@u.Id" class="btn btn-sm btn-outline-secondary">Mot de passe</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,11 @@
+@model int
+
+<li class="nav-item">
+    <a class="nav-link text-dark" asp-controller="Notifications" asp-action="Index">
+        @T["Notifications"]
+        @if (Model > 0)
+        {
+            <span class="badge rounded-pill bg-primary" aria-label="@T["UnreadNotifications", Model]">@Model</span>
+        }
+    </a>
+</li>

@@ -1,0 +1,128 @@
+@model AkarangaBank.Web.ViewModels.CompteListViewModel
+@{
+    ViewData["Title"] = T["Comptes"];
+}
+
+<h1>@T["TitleBankAccounts"]</h1>
+
+@if (TempData["Success"] is string msg)
+{
+    <div class="alert alert-success" role="status" aria-live="polite">@msg</div>
+}
+@if (TempData["Error"] is string err)
+{
+    <div class="alert alert-danger" role="alert" aria-live="assertive">@err</div>
+}
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3">
+        <input type="text" name="recherche" value="@Model.Recherche"
+               class="form-control" placeholder="Numéro, nom du client..." />
+    </div>
+    <div class="col-md-2">
+        <select name="agenceId" class="form-select">
+            <option value="">-- Agence --</option>
+            @foreach (var a in Model.Agences)
+            {
+                <option value="@a.Id" selected="@(Model.AgenceId == a.Id)">@a.Code</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select name="typeCompteId" class="form-select">
+            <option value="">-- Type --</option>
+            @foreach (var t in Model.TypesCompte)
+            {
+                <option value="@t.Id" selected="@(Model.TypeCompteId == t.Id)">@t.Libelle</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select name="statut" class="form-select">
+            <option value="">-- Statut --</option>
+            <option value="Actif" selected="@(Model.Statut == "Actif")">Actif</option>
+            <option value="Bloque" selected="@(Model.Statut == "Bloque")">Bloqué</option>
+            <option value="Cloture" selected="@(Model.Statut == "Cloture")">Clôturé</option>
+        </select>
+    </div>
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary w-100">@T["Filter"]</button>
+    </div>
+    <div class="col-md-2 text-end">
+        <a asp-action="Create" class="btn btn-success">@T["OpenAccount"]</a>
+    </div>
+</form>
+
+<div class="row mb-3">
+    @foreach (var t in Model.ComptesParType)
+    {
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">@t.Value</h5>
+                    <p class="card-text">@t.Key</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<p class="text-muted">@Model.Total compte(s) trouvé(s).</p>
+
+<table role="table" aria-label="@T["Comptes"]" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Numéro</th>
+            <th scope="col">Client</th>
+            <th scope="col">Type</th>
+            <th scope="col">Agence</th>
+            <th scope="col">Solde</th>
+            <th scope="col">Statut</th>
+            <th scope="col">@T["Actions"]</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var compte in Model.Comptes)
+    {
+        <tr>
+            <td>@compte.NumeroCompte</td>
+            <td>@compte.Client.Nom @compte.Client.Prenom</td>
+            <td>@compte.TypeCompte.Libelle</td>
+            <td>@compte.Agence.Code</td>
+            <td class="text-end">@compte.Solde.ToString("N2") @compte.Devise</td>
+            <td>
+                <span class="badge @(compte.Statut == "Actif" ? "bg-success" : compte.Statut == "Bloque" ? "bg-warning" : "bg-secondary")">@compte.Statut</span>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@compte.Id"
+                   class="btn btn-sm btn-primary">Détails</a>
+                <a asp-action="Edit" asp-route-id="@compte.Id"
+                   class="btn btn-sm btn-warning">@T["Edit"]</a>
+                <a asp-action="Delete" asp-route-id="@compte.Id"
+                   class="btn btn-sm btn-danger">@T["Delete"]</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@if (Model.TotalPages > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.Page ? "active" : "")">
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@i"
+                       asp-route-recherche="@Model.Recherche"
+                       asp-route-agenceId="@Model.AgenceId"
+                       asp-route-typeCompteId="@Model.TypeCompteId"
+                       asp-route-statut="@Model.Statut">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+

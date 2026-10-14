@@ -1,0 +1,17 @@
+@using System.Globalization
+@using Microsoft.Extensions.Localization
+@{
+    var current = CultureInfo.CurrentUICulture.Name;
+    var choices = new[] { ("fr-BI", "Français"), ("rn-BI", "Kirundi"), ("en-US", "English"), ("sw-KE", "Kiswahili") };
+}
+<form asp-controller="Culture" asp-action="SetLanguage" method="post" class="language-selector" aria-label="@T["Language"]">
+    <input type="hidden" name="returnUrl" value="@(Context.Request.Path + Context.Request.QueryString)" />
+    <label for="culture-select">@T["Language"]</label>
+    <select id="culture-select" name="culture">
+        @foreach (var (code, name) in choices)
+        {
+            <option value="@code" selected="@(current == code)">@name</option>
+        }
+    </select>
+    <button type="submit">@T["ApplyLanguage"]</button>
+</form>

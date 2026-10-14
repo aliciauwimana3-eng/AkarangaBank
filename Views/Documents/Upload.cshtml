@@ -1,0 +1,24 @@
+@model AkarangaBank.Web.ViewModels.DocumentUploadViewModel
+@{
+    ViewData["Title"] = "Deposer un document";
+}
+
+<h1>Deposer un document</h1>
+<form asp-action="Upload" method="post" enctype="multipart/form-data">
+    <input asp-for="ClientId" type="hidden" />
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+    <div class="mb-3">
+        <label asp-for="Categorie" class="form-label">Categorie</label>
+        <select asp-for="Categorie" class="form-select">
+            <option value="KYC">KYC</option><option value="Contrat">Contrat</option><option value="Comptable">Comptable</option>
+            <option value="AML">AML</option><option value="RH">RH</option><option value="Audit">Audit</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Fichier" class="form-label">Fichier (PDF, JPG, PNG, DOCX, XLSX; 10 Mo maximum)</label>
+        <input asp-for="Fichier" class="form-control" type="file" accept=".pdf,.jpg,.jpeg,.png,.docx,.xlsx" />
+        <span asp-validation-for="Fichier" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Deposer</button>
+    <a asp-action="Index" class="btn btn-secondary">Annuler</a>
+</form>

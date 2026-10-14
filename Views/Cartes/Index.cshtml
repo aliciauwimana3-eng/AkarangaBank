@@ -1,0 +1,13 @@
+@model IReadOnlyList<AkarangaBank.Web.Models.Carte>
+@{ ViewData["Title"] = T["Cartes"]; }
+<div class="d-flex justify-content-between align-items-center mb-3"><h1>@T["Cartes"]</h1>
+@if (User.IsInRole("admin") || User.IsInRole("gestionnaire")) { <a asp-action="Create" class="btn btn-primary">@T["IssueCard"]</a> }
+</div>
+<table role="table" aria-label="@T["Cartes"]" class="table table-striped"><thead><tr><th scope="col">Numéro masqué</th><th scope="col">@T["Client"]</th><th scope="col">@T["Account"]</th><th scope="col">@T["Type"]</th><th scope="col">Expiration</th><th scope="col">Plafonds/jour (retrait, paiement, en ligne)</th><th scope="col">@T["Status"]</th><th scope="col">@T["Actions"]</th></tr></thead><tbody>
+@foreach (var c in Model) { <tr><td>@c.NumeroMasque</td><td>@c.Client.Nom @c.Client.Prenom</td><td>@c.Compte.NumeroCompte</td><td>@c.TypeCarte</td><td>@c.DateExpiration.ToString("MM/yyyy")</td><td>@c.PlafondRetraitJournalier.ToString("N2") / @c.PlafondPaiementJournalier.ToString("N2") / @c.PlafondEnLigneJournalier.ToString("N2") @c.Compte.Devise</td><td>@c.Statut</td><td>
+<a asp-action="Historique" asp-route-id="@c.Id" class="btn btn-sm btn-outline-primary">@T["History"]</a>
+<form asp-action="Transaction" method="post" class="d-inline"><input type="hidden" name="id" value="@c.Id"/><input type="number" name="montant" min="0.01" step="0.01" required aria-label="@T["TransactionAmount"]"/><select name="typeTransaction" aria-label="@T["TransactionType"]"><option value="Paiement">Paiement</option><option value="Retrait">Retrait</option><option value="EnLigne">En ligne</option></select><button class="btn btn-sm btn-success">@T["Authorize"]</button></form>
+<form asp-action="Bloquer" method="post" class="d-inline"><input type="hidden" name="id" value="@c.Id"/><select name="motif" aria-label="@T["OppositionReason"]"><option value="Perte">Perte</option><option value="Vol">Vol</option><option value="Fraude">Fraude</option><option value="Autre">Autre</option></select><button class="btn btn-sm btn-outline-warning">@T["Block"]</button></form>
+<form asp-action="Renouveler" method="post" class="d-inline"><input type="hidden" name="id" value="@c.Id"/><button class="btn btn-sm btn-outline-secondary">@T["Renew"]</button></form>
+</td></tr> }
+</tbody></table>

@@ -1,0 +1,29 @@
+@model AkarangaBank.Web.ViewModels.JournalViewModel
+@{
+    ViewData["Title"] = T["Journal"];
+}
+<h1>@T["Journal"]</h1>
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3"><label class="form-label" for="du">Du</label><input id="du" name="du" type="date" class="form-control" value="@Model.Du?.ToString("yyyy-MM-dd")" /></div>
+    <div class="col-md-3"><label class="form-label" for="au">Au</label><input id="au" name="au" type="date" class="form-control" value="@Model.Au?.ToString("yyyy-MM-dd")" /></div>
+    <div class="col-md-3"><label class="form-label" for="typeOperation">Type</label><select id="typeOperation" name="typeOperation" class="form-select"><option value="">Tous</option>@foreach (var t in new[] { "Depot", "Retrait", "Virement", "VirementInterbancaire" }) { <option value="@t" selected="@(Model.TypeOperation == t)">@t</option> }</select></div>
+    <div class="col-auto align-self-end"><button class="btn btn-primary" type="submit">@T["Filter"]</button></div>
+</form>
+<div class="table-responsive"><table role="table" aria-label="Journal" class="table table-striped align-middle">
+    <thead><tr><th scope="col">Date</th><th scope="col">Référence</th><th scope="col">Type</th><th scope="col">Compte</th><th scope="col">Débit</th><th scope="col">Crédit</th><th scope="col">Statut</th></tr></thead>
+    <tbody>
+    @foreach (var o in Model.Operations)
+    {
+        <tr><td>@o.DateOperation.ToLocalTime().ToString("g")</td><td>@o.Reference</td><td>@o.TypeOperation</td><td>@o.Compte.NumeroCompte</td>
+            <td>@o.Ecritures.Where(e => e.Sens == "Debit").Sum(e => e.Montant).ToString("N2") @o.Devise</td>
+            <td>@o.Ecritures.Where(e => e.Sens == "Credit").Sum(e => e.Montant).ToString("N2") @o.Devise</td><td>@o.Statut</td></tr>
+    }
+    @if (Model.Operations.Count == 0) { <tr><td colspan="7" class="text-center text-muted">Aucune opération trouvée.</td></tr> }
+    </tbody>
+</table></div>
+@if (Model.TotalPages > 1)
+{
+    <nav aria-label="Pages du journal"><ul class="pagination">
+        @for (var p = 1; p <= Model.TotalPages; p++) { <li class="page-item @(p == Model.Page ? "active" : "")"><a class="page-link" asp-action="Journal" asp-route-du="@Model.Du?.ToString("yyyy-MM-dd")" asp-route-au="@Model.Au?.ToString("yyyy-MM-dd")" asp-route-typeOperation="@Model.TypeOperation" asp-route-page="@p">@p</a></li> }
+    </ul></nav>
+}

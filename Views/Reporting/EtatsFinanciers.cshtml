@@ -1,0 +1,9 @@
+@model AkarangaBank.Web.ViewModels.FinancialStatementReport
+@{ ViewData["Title"] = Model.Title; Layout = "_LayoutPrint"; }
+<div class="container py-4">
+  <div class="d-flex justify-content-between"><h1>@Model.Title</h1><button class="btn btn-outline-secondary no-print" onclick="window.print()">Imprimer</button></div>
+  <p>Situation au @Model.AsOf.ToString("dd/MM/yyyy") — synthèse en BIF.</p>
+  <section class="row g-3"><div class="col-md-3">Actif identifié: <b>@Model.Assets.ToString("N2")</b></div><div class="col-md-3">Dépôts clients: <b>@Model.Liabilities.ToString("N2")</b></div><div class="col-md-3">Produits période: <b>@Model.Revenue.ToString("N2")</b></div><div class="col-md-3">Charges période: <b>@Model.Expenses.ToString("N2")</b></div><div class="col-md-3">Résultat période: <b>@Model.Result.ToString("N2")</b></div><div class="col-md-3">Capitaux propres résiduels: <b>@Model.Equity.ToString("N2")</b></div></section>
+  <p class="text-muted mt-3">Le plan comptable du projet utilise des codes descriptifs, sans classes normalisées. La synthèse BIF identifie CAISSE et PRETS comme actifs, les comptes auxiliaires clients comme dépôts et calcule les capitaux propres comme solde d'équilibrage. Le détail ci-dessous conserve la devise de chaque compte.</p>
+  <h2 class="h4 mt-4">Détail des comptes</h2><table class="table table-sm"><thead><tr><th>Compte</th><th>Libellé</th><th>Devise</th><th>Débit</th><th>Crédit</th><th>Solde</th></tr></thead><tbody>@foreach(var r in Model.Rows){<tr><td>@r.Account</td><td>@r.Label</td><td>@r.Currency</td><td>@r.Debit.ToString("N2")</td><td>@r.Credit.ToString("N2")</td><td>@r.Balance.ToString("N2")</td></tr>}</tbody></table>
+</div>

@@ -1,0 +1,115 @@
+@model AkarangaBank.Web.ViewModels.ClientListViewModel
+@{
+    ViewData["Title"] = T["Clients"];
+}
+
+<h1>@T["Clients"]</h1>
+
+@if (TempData["Success"] is string msg)
+{
+    <div class="alert alert-success" role="status" aria-live="polite">@msg</div>
+}
+@if (TempData["Error"] is string err)
+{
+    <div class="alert alert-danger" role="alert" aria-live="assertive">@err</div>
+}
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-4">
+        <input type="text" name="recherche" value="@Model.Recherche"
+               class="form-control" placeholder="Rechercher par nom, numéro, CNI..." />
+    </div>
+    <div class="col-md-3">
+        <select name="agenceId" class="form-select">
+            <option value="">-- Toutes les agences --</option>
+            @foreach (var agence in Model.Agences)
+            {
+                <option value="@agence.Id" selected="@(Model.AgenceId == agence.Id)">
+                    @agence.Code — @agence.Ville
+                </option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <select name="statut" class="form-select">
+            <option value="">-- Tous statuts --</option>
+            <option value="Actif" selected="@(Model.Statut == "Actif")">Actif</option>
+            <option value="Suspendu" selected="@(Model.Statut == "Suspendu")">Suspendu</option>
+            <option value="Cloture" selected="@(Model.Statut == "Cloture")">Clôturé</option>
+        </select>
+    </div>
+    <div class="col-md-1">
+        <button type="submit" class="btn btn-primary w-100">@T["Filter"]</button>
+    </div>
+    <div class="col-md-2 text-end">
+        <a asp-action="Create" class="btn btn-success">@T["NewClient"]</a>
+    </div>
+</form>
+
+<p class="text-muted">
+    @Model.Total client(s) trouvé(s).
+    <a asp-action="ExportCsv"
+       asp-route-recherche="@Model.Recherche"
+       asp-route-agenceId="@Model.AgenceId"
+       asp-route-statut="@Model.Statut"
+       class="btn btn-sm btn-outline-secondary ms-2">@T["ExportCsv"]</a>
+</p>
+
+<table role="table" aria-label="@T["Clients"]" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Numéro</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">CNI</th>
+            <th scope="col">Agence</th>
+            <th scope="col">Statut</th>
+            <th scope="col">@T["Actions"]</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var client in Model.Clients)
+    {
+        <tr>
+            <td>@client.NumeroClient</td>
+            <td>@client.Nom</td>
+            <td>@client.Prenom</td>
+            <td>@client.NumeroCNI</td>
+            <td>@client.Agence.Code</td>
+            <td>
+                <span class="badge @(client.Statut == "Actif" ? "bg-success" : client.Statut == "Suspendu" ? "bg-warning" : "bg-secondary")">
+                    @client.Statut
+                </span>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@client.Id"
+                   class="btn btn-sm btn-primary">Détails</a>
+                <a asp-action="Edit" asp-route-id="@client.Id"
+                   class="btn btn-sm btn-warning">@T["Edit"]</a>
+                <a asp-action="Delete" asp-route-id="@client.Id"
+                   class="btn btn-sm btn-danger">@T["Delete"]</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@if (Model.TotalPages > 1)
+{
+    <nav>
+        <ul class="pagination">
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.Page ? "active" : "")">
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@i"
+                       asp-route-recherche="@Model.Recherche"
+                       asp-route-agenceId="@Model.AgenceId"
+                       asp-route-statut="@Model.Statut">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+

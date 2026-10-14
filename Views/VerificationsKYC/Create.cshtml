@@ -1,0 +1,49 @@
+@model AkarangaBank.Web.ViewModels.VerificationKYCCreateViewModel
+@{
+    ViewData["Title"] = T["VerificationKYC"];
+}
+
+<h1>@T["VerificationKYC"]</h1>
+
+<p class="text-muted">
+    Client : <strong>@Model.ClientNumero — @Model.ClientNom</strong>
+</p>
+
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="ClientId" />
+    <input type="hidden" asp-for="ClientNom" />
+    <input type="hidden" asp-for="ClientNumero" />
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+    <div class="mb-3">
+        <label asp-for="TypeDocument" class="form-label"></label>
+        <select asp-for="TypeDocument" class="form-select">
+            <option value="CNI">CNI</option>
+            <option value="Passeport">Passeport</option>
+            <option value="Permis">Permis de conduire</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="NumeroDocument" class="form-label"></label>
+        <input asp-for="NumeroDocument" class="form-control" />
+        <span asp-validation-for="NumeroDocument" class="text-danger" role="alert"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Fichier" class="form-label"></label>
+        <input asp-for="Fichier" class="form-control" type="file" accept=".pdf,.png,.jpg,.jpeg" />
+        <span asp-validation-for="Fichier" class="text-danger" role="alert"></span>
+        <div class="form-text">@T["KycUploadHelp"]</div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Commentaire" class="form-label"></label>
+        <textarea asp-for="Commentaire" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">@T["Save"]</button>
+    <a asp-controller="Clients" asp-action="Details" asp-route-id="@Model.ClientId"
+       class="btn btn-secondary">@T["Cancel"]</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

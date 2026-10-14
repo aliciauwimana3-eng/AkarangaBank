@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Agences" xml:space="preserve">
+    <value>Agences</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="Comptes" xml:space="preserve">
+    <value>Comptes</value>
+  </data>
+  <data name="Virements" xml:space="preserve">
+    <value>Virements</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>Opérations</value>
+  </data>
+  <data name="Prets" xml:space="preserve">
+    <value>Prêts</value>
+  </data>
+  <data name="Cartes" xml:space="preserve">
+    <value>Cartes</value>
+  </data>
+  <data name="Journal" xml:space="preserve">
+    <value>Journal comptable</value>
+  </data>
+  <data name="AlertesAML" xml:space="preserve">
+    <value>Alertes AML</value>
+  </data>
+  <data name="JournalAudit" xml:space="preserve">
+    <value>Journal d’audit</value>
+  </data>
+  <data name="ControleComptable" xml:space="preserve">
+    <value>Contrôle comptable</value>
+  </data>
+  <data name="SeuilsAML" xml:space="preserve">
+    <value>Seuils AML/CNRF</value>
+  </data>
+  <data name="Utilisateurs" xml:space="preserve">
+    <value>Utilisateurs</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Confidentialité</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="ApplyLanguage" xml:space="preserve">
+    <value>Appliquer</value>
+  </data>
+  <data name="SkipToContent" xml:space="preserve">
+    <value>Aller au contenu principal</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="HomeDescription" xml:space="preserve">
+    <value>Gérez vos opérations bancaires en toute sécurité.</value>
+  </data>
+  <data name="TitleBankAccounts" xml:space="preserve">
+    <value>Comptes bancaires</value>
+  </data>
+  <data name="NewClient" xml:space="preserve">
+    <value>+ Nouveau client</value>
+  </data>
+  <data name="OpenAccount" xml:space="preserve">
+    <value>+ Ouvrir un compte</value>
+  </data>
+  <data name="NewTransfer" xml:space="preserve">
+    <value>Nouveau virement</value>
+  </data>
+  <data name="NewTransaction" xml:space="preserve">
+    <value>Nouvelle opération</value>
+  </data>
+  <data name="NewLoanRequest" xml:space="preserve">
+    <value>Nouvelle demande</value>
+  </data>
+  <data name="IssueCard" xml:space="preserve">
+    <value>Émettre une carte</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtrer</value>
+  </data>
+  <data name="ExportCsv" xml:space="preserve">
+    <value>Exporter en CSV</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="ClientNumber" xml:space="preserve">
+    <value>Numéro</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="NationalId" xml:space="preserve">
+    <value>CNI</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Référence</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Destinataire</value>
+  </data>
+  <data name="InterestRate" xml:space="preserve">
+    <value>Taux</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Durée</value>
+  </data>
+  <data name="MonthlyPayment" xml:space="preserve">
+    <value>Mensualité</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Approuver</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Rejeter</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Historique</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>Bloquer</value>
+  </data>
+  <data name="Renew" xml:space="preserve">
+    <value>Renouveler</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Autoriser</value>
+  </data>
+  <data name="DetectLatePayments" xml:space="preserve">
+    <value>Détecter les échéances en retard</value>
+  </data>
+  <data name="NoTransfers" xml:space="preserve">
+    <value>Aucun virement enregistré.</value>
+  </data>
+  <data name="NoTransactions" xml:space="preserve">
+    <value>Aucune opération enregistrée.</value>
+  </data>
+  <data name="NoLoanRequests" xml:space="preserve">
+    <value>Aucune demande de prêt.</value>
+  </data>
+  <data name="LoanSchedule" xml:space="preserve">
+    <value>Échéancier</value>
+  </data>
+  <data name="DailyOnlineLimit" xml:space="preserve">
+    <value>Plafond de paiement en ligne par jour</value>
+  </data>
+  <data name="BackCards" xml:space="preserve">
+    <value>Retour aux cartes</value>
+  </data>
+  <data name="Repay" xml:space="preserve">
+    <value>Rembourser</value>
+  </data>
+  <data name="CardHistory" xml:space="preserve">
+    <value>Historique des transactions de la carte</value>
+  </data>
+  <data name="DailyPaymentLimit" xml:space="preserve">
+    <value>Plafond de paiement par jour</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="ChooseType" xml:space="preserve">
+    <value>Choisir un type</value>
+  </data>
+  <data name="LoanRequest" xml:space="preserve">
+    <value>Demande de prêt</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Choisir</value>
+  </data>
+  <data name="SelectAccount" xml:space="preserve">
+    <value>Sélectionner un compte</value>
+  </data>
+  <data name="LoanIntro" xml:space="preserve">
+    <value>Le prêt sera versé sur le compte choisi après approbation d’un gestionnaire ou d’un administrateur.</value>
+  </data>
+  <data name="BackLoans" xml:space="preserve">
+    <value>Retour aux prêts</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="DailyWithdrawalLimit" xml:space="preserve">
+    <value>Plafond de retrait par jour</value>
+  </data>
+  <data name="LoanDetails" xml:space="preserve">
+    <value>Détails du prêt</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Créer</value>
+  </data>
+  <data name="OpenAccountAction" xml:space="preserve">
+    <value>Ouvrir le compte</value>
+  </data>
+  <data name="SubmitRequest" xml:space="preserve">
+    <value>Envoyer la demande</value>
+  </data>
+  <data name="SaveTransaction" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="OperationIntro" xml:space="preserve">
+    <value>L’opération sera comptabilisée après validation par un gestionnaire ou un administrateur.</value>
+  </data>
+  <data name="SearchBranches" xml:space="preserve">
+    <value>Rechercher par code, nom ou ville...</value>
+  </data>
+  <data name="SaveTransfer" xml:space="preserve">
+    <value>Enregistrer le virement</value>
+  </data>
+  <data name="NewOperation" xml:space="preserve">
+    <value>Nouvelle opération</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Rechercher</value>
+  </data>
+  <data name="NewAgency" xml:space="preserve">
+    <value>+ Nouvelle agence</value>
+  </data>
+  <data name="HeadOffice" xml:space="preserve">
+    <value>Siège</value>
+  </data>
+  <data name="AgencyResults" xml:space="preserve">
+    <value>agence(s) trouvée(s).</value>
+  </data>
+  <data name="InterbankTransferNotice" xml:space="preserve">
+    <value>Après validation, le montant sera inscrit au compte de règlement interbancaire. La connexion au réseau externe sera ajoutée au chapitre 10.</value>
+  </data>
+  <data name="TransferIntro" xml:space="preserve">
+    <value>Le virement sera traité après validation par un gestionnaire ou un administrateur.</value>
+  </data>
+  <data name="ToggleNavigation" xml:space="preserve">
+    <value>Afficher ou masquer la navigation</value>
+  </data>
+  <data name="EditAgency" xml:space="preserve">
+    <value>Modifier l’agence</value>
+  </data>
+  <data name="EditClient" xml:space="preserve">
+    <value>Modifier le client</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Confidentialité</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>Nouvel utilisateur</value>
+  </data>
+  <data name="VerificationKYC" xml:space="preserve">
+    <value>Nouvelle vérification KYC</value>
+  </data>
+  <data name="EditAccount" xml:space="preserve">
+    <value>Modifier le compte</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Réinitialiser le mot de passe</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Paiement</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Type de transaction</value>
+  </data>
+  <data name="Loss" xml:space="preserve">
+    <value>Perte</value>
+  </data>
+  <data name="DailyLimits" xml:space="preserve">
+    <value>Plafonds/jour (retrait, paiement, en ligne)</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Retrait</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Autre</value>
+  </data>
+  <data name="TransactionAmount" xml:space="preserve">
+    <value>Montant de transaction</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>En ligne</value>
+  </data>
+  <data name="Theft" xml:space="preserve">
+    <value>Vol</value>
+  </data>
+  <data name="ApproveRate" xml:space="preserve">
+    <value>Taux personnalisé (%)</value>
+  </data>
+  <data name="Expiration" xml:space="preserve">
+    <value>Expiration</value>
+  </data>
+  <data name="OppositionReason" xml:space="preserve">
+    <value>Motif de blocage</value>
+  </data>
+  <data name="Fraud" xml:space="preserve">
+    <value>Fraude</value>
+  </data>
+  <data name="RejectionReasonPlaceholder" xml:space="preserve">
+    <value>Motif de rejet</value>
+  </data>
+  <data name="CardNumberMasked" xml:space="preserve">
+    <value>Numéro masqué</value>
+  </data>
+  <data name="RejectionReason" xml:space="preserve">
+    <value>Motif de rejet obligatoire</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Déconnexion</value>
+  </data>
+  <data name="FinalBalance" xml:space="preserve">
+    <value>Solde final</value>
+  </data>
+  <data name="PrivacyText" xml:space="preserve">
+    <value>Consultez cette page pour connaître la politique de confidentialité du site.</value>
+  </data>
+  <data name="TakeCharge" xml:space="preserve">
+    <value>Prendre en charge</value>
+  </data>
+  <data name="BalancedEntries" xml:space="preserve">
+    <value>Les écritures comptables sont équilibrées.</value>
+  </data>
+  <data name="AccountStatement" xml:space="preserve">
+    <value>Relevé de compte</value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>Après</value>
+  </data>
+  <data name="AllActions" xml:space="preserve">
+    <value>Toutes les actions</value>
+  </data>
+  <data name="Before" xml:space="preserve">
+    <value>Avant</value>
+  </data>
+  <data name="InitialBalance" xml:space="preserve">
+    <value>Solde initial</value>
+  </data>
+  <data name="NewRecord" xml:space="preserve">
+    <value>nouveau</value>
+  </data>
+  <data name="Classify" xml:space="preserve">
+    <value>Classer</value>
+  </data>
+  <data name="BackToAccount" xml:space="preserve">
+    <value>Retour au compte</value>
+  </data>
+  <data name="NoLedgerEntries" xml:space="preserve">
+    <value>Aucune écriture comptable.</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Système</value>
+  </data>
+  <data name="UnbalancedEntries" xml:space="preserve">
+    <value>Des opérations présentent un écart entre le total des débits et des crédits.</value>
+  </data>
+  <data name="TableAffected" xml:space="preserve">
+    <value>Table concernée</value>
+  </data>
+  <data name="AllStatuses" xml:space="preserve">
+    <value>Tous les statuts</value>
+  </data>
+  <data name="NoAuditEntries" xml:space="preserve">
+    <value>Aucune entrée d’audit.</value>
+  </data>
+  <data name="NoAMLAlerts" xml:space="preserve">
+    <value>Aucune alerte AML.</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="ExportAML" xml:space="preserve">
+    <value>Exporter les déclarations CNRF (CSV)</value>
+  </data>
+  <data name="Process" xml:space="preserve">
+    <value>Traiter</value>
+  </data>
+  <data name="OpenJournal" xml:space="preserve">
+    <value>Ouvrir le journal</value>
+  </data>
+  <data name="AllLevels" xml:space="preserve">
+    <value>Tous les niveaux</value>
+  </data>
+  <data name="AuditMasked" xml:space="preserve">
+    <value>Les valeurs sensibles sont masquées dans les instantanés avant et après.</value>
+  </data>
+  <data name="Debit" xml:space="preserve">
+    <value>Débit</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Crédit</value>
+  </data>
+  <data name="ViewDocument" xml:space="preserve">
+    <value>Voir le document</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Ouvrir</value>
+  </data>
+  <data name="KycUploadHelp" xml:space="preserve">
+    <value>PDF, PNG ou JPEG; taille maximale de 5 Mo.</value>
+  </data>
+  <data name="NoNotifications" xml:space="preserve">
+    <value>Aucune notification pour le moment.</value>
+  </data>
+  <data name="MarkRead" xml:space="preserve">
+    <value>Marquer comme lue</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="UnreadNotifications" xml:space="preserve">
+    <value>{0} notifications non lues</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+</root>

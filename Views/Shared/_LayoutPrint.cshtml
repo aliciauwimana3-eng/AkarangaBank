@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.Name">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - Akaranga Bank</title>
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+  <header class="no-print border-bottom mb-3"><div class="container py-3 d-flex justify-content-between"><strong>Akaranga Bank — Reporting</strong><a asp-controller="Reporting" asp-action="Index">Tableau de bord</a></div></header>
+  <main id="main-content" class="container"><div class="report-print-header d-none d-print-block mb-3"><strong>AKARANGA BANK</strong><hr /></div>@RenderBody()</main>
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

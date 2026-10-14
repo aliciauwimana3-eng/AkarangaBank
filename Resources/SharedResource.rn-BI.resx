@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  <data name="Agences" xml:space="preserve">
+    <value>Amashami</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Abakiriya</value>
+  </data>
+  <data name="Comptes" xml:space="preserve">
+    <value>Konti</value>
+  </data>
+  <data name="Virements" xml:space="preserve">
+    <value>Amabwiriza y’ugutanga amahera</value>
+  </data>
+  <data name="Operations" xml:space="preserve">
+    <value>Ibikorwa</value>
+  </data>
+  <data name="Prets" xml:space="preserve">
+    <value>Inguzanyo</value>
+  </data>
+  <data name="Cartes" xml:space="preserve">
+    <value>Amakarata</value>
+  </data>
+  <data name="Journal" xml:space="preserve">
+    <value>Igitabu c’ibaruramari</value>
+  </data>
+  <data name="AlertesAML" xml:space="preserve">
+    <value>Imenyesha rya AML</value>
+  </data>
+  <data name="JournalAudit" xml:space="preserve">
+    <value>Igitabu c’igenzura</value>
+  </data>
+  <data name="ControleComptable" xml:space="preserve">
+    <value>Igenzura ry’ibaruramari</value>
+  </data>
+  <data name="SeuilsAML" xml:space="preserve">
+    <value>Imipaka ya AML</value>
+  </data>
+  <data name="Utilisateurs" xml:space="preserve">
+    <value>Abakoresha</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Ibanga</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Ururimi</value>
+  </data>
+  <data name="ApplyLanguage" xml:space="preserve">
+    <value>Hindura</value>
+  </data>
+  <data name="SkipToContent" xml:space="preserve">
+    <value>Ja ku bikuru biri muri uru rupapuro</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Kaze neza</value>
+  </data>
+  <data name="HomeDescription" xml:space="preserve">
+    <value>Rongora ibikorwa vyawe vya banki mu mutekano.</value>
+  </data>
+  <data name="TitleBankAccounts" xml:space="preserve">
+    <value>Konti za banki</value>
+  </data>
+  <data name="NewClient" xml:space="preserve">
+    <value>+ Umukiriya mushasha</value>
+  </data>
+  <data name="OpenAccount" xml:space="preserve">
+    <value>+ Fungura konti</value>
+  </data>
+  <data name="NewTransfer" xml:space="preserve">
+    <value>Tanga amahera</value>
+  </data>
+  <data name="NewTransaction" xml:space="preserve">
+    <value>Igikorwa gishasha</value>
+  </data>
+  <data name="NewLoanRequest" xml:space="preserve">
+    <value>Gusaba inguzanyo</value>
+  </data>
+  <data name="IssueCard" xml:space="preserve">
+    <value>Tanga ikarata</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Rondera</value>
+  </data>
+  <data name="ExportCsv" xml:space="preserve">
+    <value>Kurungika muri CSV</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>Ibikorwa</value>
+  </data>
+  <data name="ClientNumber" xml:space="preserve">
+    <value>Inomero</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Izina</value>
+  </data>
+  <data name="NationalId" xml:space="preserve">
+    <value>Indangamuntu</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Uko bimeze</value>
+  </data>
+  <data name="Reference" xml:space="preserve">
+    <value>Inomero yerekana</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amhera</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Itariki</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Ubwoko</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Umukiriya</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Konti</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Aho ava</value>
+  </data>
+  <data name="Recipient" xml:space="preserve">
+    <value>Uwuronka</value>
+  </data>
+  <data name="InterestRate" xml:space="preserve">
+    <value>Ijanisha</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Igihe</value>
+  </data>
+  <data name="MonthlyPayment" xml:space="preserve">
+    <value>Amhera ya buri kwezi</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Ibisobanuro</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Hindura</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Siba</value>
+  </data>
+  <data name="Approve" xml:space="preserve">
+    <value>Emeza</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Yanka</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Kahise</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>Hagarika</value>
+  </data>
+  <data name="Renew" xml:space="preserve">
+    <value>Subiramwo</value>
+  </data>
+  <data name="Authorize" xml:space="preserve">
+    <value>Emera</value>
+  </data>
+  <data name="DetectLatePayments" xml:space="preserve">
+    <value>Raba ibirarane vyarengeje igihe</value>
+  </data>
+  <data name="NoTransfers" xml:space="preserve">
+    <value>Nta virement yabitswe.</value>
+  </data>
+  <data name="NoTransactions" xml:space="preserve">
+    <value>Nta gikorwa cabitswe.</value>
+  </data>
+  <data name="NoLoanRequests" xml:space="preserve">
+    <value>Nta busabe bw’inguzanyo.</value>
+  </data>
+  <data name="LoanSchedule" xml:space="preserve">
+    <value>Urutonde rwo kuriha</value>
+  </data>
+  <data name="DailyOnlineLimit" xml:space="preserve">
+    <value>Umupaka wo kuriha kuri internet ku musi</value>
+  </data>
+  <data name="BackCards" xml:space="preserve">
+    <value>Subira ku makarata</value>
+  </data>
+  <data name="Repay" xml:space="preserve">
+    <value>Riha</value>
+  </data>
+  <data name="CardHistory" xml:space="preserve">
+    <value>Kahise k’ibikorwa vy’ikarata</value>
+  </data>
+  <data name="DailyPaymentLimit" xml:space="preserve">
+    <value>Umupaka wo kuriha ku musi</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Bika</value>
+  </data>
+  <data name="ChooseType" xml:space="preserve">
+    <value>Hitamwo ubwoko</value>
+  </data>
+  <data name="LoanRequest" xml:space="preserve">
+    <value>Gusaba inguzanyo</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Hitamwo</value>
+  </data>
+  <data name="SelectAccount" xml:space="preserve">
+    <value>Hitamwo konti</value>
+  </data>
+  <data name="LoanIntro" xml:space="preserve">
+    <value>Inguzanyo izoshirwa kuri konti yatowe ihejeje kwemezwa n’umuyobozi.</value>
+  </data>
+  <data name="BackLoans" xml:space="preserve">
+    <value>Subira ku nguzanyo</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Hagarika</value>
+  </data>
+  <data name="DailyWithdrawalLimit" xml:space="preserve">
+    <value>Umupaka wo kubikuza ku musi</value>
+  </data>
+  <data name="LoanDetails" xml:space="preserve">
+    <value>Ibisobanuro vy’inguzanyo</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Rema</value>
+  </data>
+  <data name="OpenAccountAction" xml:space="preserve">
+    <value>Fungura konti</value>
+  </data>
+  <data name="SubmitRequest" xml:space="preserve">
+    <value>Rungika ubusabe</value>
+  </data>
+  <data name="SaveTransaction" xml:space="preserve">
+    <value>Bika igikorwa</value>
+  </data>
+  <data name="OperationIntro" xml:space="preserve">
+    <value>Igikorwa kizokwandikwa kimaze kwemezwa n’umuyobozi.</value>
+  </data>
+  <data name="SearchBranches" xml:space="preserve">
+    <value>Rondera ukoresheje kode, izina canke igisagara...</value>
+  </data>
+  <data name="SaveTransfer" xml:space="preserve">
+    <value>Bika irungikwa ry’amahera</value>
+  </data>
+  <data name="NewOperation" xml:space="preserve">
+    <value>Igikorwa gishasha</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Rondera</value>
+  </data>
+  <data name="NewAgency" xml:space="preserve">
+    <value>+ Ishami rishasha</value>
+  </data>
+  <data name="HeadOffice" xml:space="preserve">
+    <value>Icyicaro gikuru</value>
+  </data>
+  <data name="AgencyResults" xml:space="preserve">
+    <value>amashami yabonetse.</value>
+  </data>
+  <data name="InterbankTransferNotice" xml:space="preserve">
+    <value>Amahera azoshirwa kuri konti yo gutunganya amatohoza hagati ya banki amaze kwemezwa.</value>
+  </data>
+  <data name="TransferIntro" xml:space="preserve">
+    <value>Uruhando ruzokorwa ruhejeje kwemezwa n’umuyobozi.</value>
+  </data>
+  <data name="ToggleNavigation" xml:space="preserve">
+    <value>Erekana canke uhishe ibikubiyemwo</value>
+  </data>
+  <data name="EditAgency" xml:space="preserve">
+    <value>Hindura ishami</value>
+  </data>
+  <data name="EditClient" xml:space="preserve">
+    <value>Hindura umukiriya</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Ibanga</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>Umukoresha mushasha</value>
+  </data>
+  <data name="VerificationKYC" xml:space="preserve">
+    <value>Igenzura rishasha rya KYC</value>
+  </data>
+  <data name="EditAccount" xml:space="preserve">
+    <value>Hindura konti</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Hindura ijambobanga</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Kuriha</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Ubwoko bw’igikorwa</value>
+  </data>
+  <data name="Loss" xml:space="preserve">
+    <value>Yazimiye</value>
+  </data>
+  <data name="DailyLimits" xml:space="preserve">
+    <value>Imipaka ya buri musi (kubikuza, kuriha, kuri internet)</value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Kubikuza</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Ibindi</value>
+  </data>
+  <data name="TransactionAmount" xml:space="preserve">
+    <value>Amahera y’igikorwa</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Kuri internet</value>
+  </data>
+  <data name="Theft" xml:space="preserve">
+    <value>Yibwe</value>
+  </data>
+  <data name="ApproveRate" xml:space="preserve">
+    <value>Ijanisha ryihariye (%)</value>
+  </data>
+  <data name="Expiration" xml:space="preserve">
+    <value>Igihe izorangirira</value>
+  </data>
+  <data name="OppositionReason" xml:space="preserve">
+    <value>Impamvu yo guhagarika</value>
+  </data>
+  <data name="Fraud" xml:space="preserve">
+    <value>Uburiganya</value>
+  </data>
+  <data name="RejectionReasonPlaceholder" xml:space="preserve">
+    <value>Impamvu yo kwanka</value>
+  </data>
+  <data name="CardNumberMasked" xml:space="preserve">
+    <value>Inomero yihishijwe</value>
+  </data>
+  <data name="RejectionReason" xml:space="preserve">
+    <value>Impamvu yo kwanka irakenewe</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Gusohoka</value>
+  </data>
+  <data name="FinalBalance" xml:space="preserve">
+    <value>Amahera asigaye</value>
+  </data>
+  <data name="PrivacyText" xml:space="preserve">
+    <value>Koresha uru rupapuro mu gusigura amategeko y’ibanga y’urubuga.</value>
+  </data>
+  <data name="TakeCharge" xml:space="preserve">
+    <value>Bikurikirane</value>
+  </data>
+  <data name="BalancedEntries" xml:space="preserve">
+    <value>Ibaruramari riraringanijwe.</value>
+  </data>
+  <data name="AccountStatement" xml:space="preserve">
+    <value>Incamake ya konti</value>
+  </data>
+  <data name="After" xml:space="preserve">
+    <value>Inyuma</value>
+  </data>
+  <data name="AllActions" xml:space="preserve">
+    <value>Ibikorwa vyose</value>
+  </data>
+  <data name="Before" xml:space="preserve">
+    <value>Imbere</value>
+  </data>
+  <data name="InitialBalance" xml:space="preserve">
+    <value>Amahera yatanguranye</value>
+  </data>
+  <data name="NewRecord" xml:space="preserve">
+    <value>gishasha</value>
+  </data>
+  <data name="Classify" xml:space="preserve">
+    <value>Shira mu migwi</value>
+  </data>
+  <data name="BackToAccount" xml:space="preserve">
+    <value>Subira kuri konti</value>
+  </data>
+  <data name="NoLedgerEntries" xml:space="preserve">
+    <value>Nta nyandiko z’ibaruramari.</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Sisitemu</value>
+  </data>
+  <data name="UnbalancedEntries" xml:space="preserve">
+    <value>Ibikorwa bimwe bifise itandukaniro hagati y’amadeni n’inguzanyo.</value>
+  </data>
+  <data name="TableAffected" xml:space="preserve">
+    <value>Imbonerahamwe yagizweko</value>
+  </data>
+  <data name="AllStatuses" xml:space="preserve">
+    <value>Uko vyose bimeze</value>
+  </data>
+  <data name="NoAuditEntries" xml:space="preserve">
+    <value>Nta nyandiko z’igenzura.</value>
+  </data>
+  <data name="NoAMLAlerts" xml:space="preserve">
+    <value>Nta menyesha rya AML.</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Iciyumviro</value>
+  </data>
+  <data name="ExportAML" xml:space="preserve">
+    <value>Rungika imenyesha rya CNRF (CSV)</value>
+  </data>
+  <data name="Process" xml:space="preserve">
+    <value>Kora</value>
+  </data>
+  <data name="OpenJournal" xml:space="preserve">
+    <value>Fungura igitabu c’ibaruramari</value>
+  </data>
+  <data name="AllLevels" xml:space="preserve">
+    <value>Inzego zose</value>
+  </data>
+  <data name="AuditMasked" xml:space="preserve">
+    <value>Amakuru y’ibanga arahishijwe mu vyabaye imbere n’inyuma.</value>
+  </data>
+  <data name="Debit" xml:space="preserve">
+    <value>Ideni</value>
+  </data>
+  <data name="Credit" xml:space="preserve">
+    <value>Inguzanyo</value>
+  </data>
+  <data name="ViewDocument" xml:space="preserve">
+    <value>Raba urupapuro</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Fungura</value>
+  </data>
+  <data name="KycUploadHelp" xml:space="preserve">
+    <value>PDF, PNG canke JPEG; ntirenze 5 MB.</value>
+  </data>
+  <data name="NoNotifications" xml:space="preserve">
+    <value>Nta butumwa buraronka.</value>
+  </data>
+  <data name="MarkRead" xml:space="preserve">
+    <value>Shira ko wasomye</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Ubutumwa</value>
+  </data>
+  <data name="UnreadNotifications" xml:space="preserve">
+    <value>{0} ubutumwa butarasomwa</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Inyandiko</value>
+  </data>
+</root>
