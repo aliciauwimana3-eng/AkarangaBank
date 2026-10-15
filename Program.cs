@@ -23,6 +23,12 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
     {
         if (IPAddress.TryParse(proxy, out var address)) options.KnownProxies.Add(address);
     }
+     // Hebergeur avec proxy inverse (Railway) : on fait confiance au proxy de la plateforme
+    if (builder.Configuration.GetValue<bool>("ForwardedHeaders:TrustAll"))
+    {
+        options.KnownNetworks.Clear();
+        options.KnownProxies.Clear();
+    }
 });
 
 // --- Base de données (chaîne de connexion dans les User Secrets) ---
