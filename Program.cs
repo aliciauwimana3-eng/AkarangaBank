@@ -26,7 +26,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
      // Hebergeur avec proxy inverse (Railway) : on fait confiance au proxy de la plateforme
     if (builder.Configuration.GetValue<bool>("ForwardedHeaders:TrustAll"))
     {
-        options.KnownNetworks.Clear();
+        options.KnownIPNetworks.Clear();
         options.KnownProxies.Clear();
     }
 });
