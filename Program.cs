@@ -13,6 +13,10 @@ using Microsoft.AspNetCore.Localization;
 using AkarangaBank.Web.Hubs;
 using Hangfire;
 using System.Threading.RateLimiting;
+using Hangfire.PostgreSql;
+
+// PostgreSQL : accepte les dates sans fuseau horaire, comme SQL Server
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +38,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 // --- Base de données (chaîne de connexion dans les User Secrets) ---
 builder.Services.AddScoped<AuditSaveChangesInterceptor>();
 builder.Services.AddDbContext<AkarangaBankContext>((services, options) =>
-    options.UseSqlServer(
+    options.UseNpgsql(
         builder.Configuration.GetConnectionString("AkarangaBank"))
         .AddInterceptors(services.GetRequiredService<AuditSaveChangesInterceptor>()));
 
@@ -196,7 +200,7 @@ if (!builder.Environment.IsEnvironment("Testing"))
         .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
         .UseSimpleAssemblyNameTypeSerializer()
         .UseRecommendedSerializerSettings()
-        .UseSqlServerStorage(builder.Configuration.GetConnectionString("AkarangaBank")));
+        .UsePostgreSqlStorage(options => options.UseNpgsqlConnection(builder.Configuration.GetConnectionString("AkarangaBank"))));
     builder.Services.AddHangfireServer();
 }
 

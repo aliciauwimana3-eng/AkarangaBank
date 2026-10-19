@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 using Microsoft.EntityFrameworkCore;
 using AkarangaBank.Web.Models;
 using AkarangaBank.Web.Services;
@@ -106,7 +106,7 @@ public class ComptesController : Controller
             return RedirectToAction(nameof(Index));
         }
         catch (DbUpdateException ex)
-            when (ex.InnerException is SqlException sql && sql.Number == 2601)
+            when (ex.InnerException is PostgresException pg && pg.SqlState == PostgresErrorCodes.UniqueViolation)
         {
             ModelState.AddModelError(nameof(vm.NumeroCompte), "Ce numéro de compte est déjà utilisé.");
             await ChargerListesAsync(vm.ClientId, vm.TypeCompteId, vm.AgenceId);

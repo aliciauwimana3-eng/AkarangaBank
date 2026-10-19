@@ -78,7 +78,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(a => a.Code).HasMaxLength(20).IsRequired();
             b.Property(a => a.Nom).HasMaxLength(100).IsRequired();
             b.Property(a => a.Ville).HasMaxLength(50).IsRequired();
-            b.Property(a => a.DateCreation).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(a => a.DateCreation).HasDefaultValueSql("timezone('utc', now())");
             b.HasIndex(a => a.Code).IsUnique();
         });
 
@@ -89,7 +89,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(p => p.Cle).HasMaxLength(50).IsRequired();
             b.Property(p => p.Valeur).HasMaxLength(255).IsRequired();
             b.Property(p => p.Description).HasMaxLength(255);
-            b.Property(p => p.DateModification).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(p => p.DateModification).HasDefaultValueSql("timezone('utc', now())");
             b.HasIndex(p => new { p.Cle, p.AgenceId }).IsUnique();
 
             b.HasOne(p => p.Agence).WithMany()
@@ -110,7 +110,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(c => c.Email).HasMaxLength(100);
             b.Property(c => c.Adresse).HasMaxLength(255);
             b.Property(c => c.Statut).HasMaxLength(20).HasDefaultValue("Actif");
-            b.Property(c => c.DateCreation).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(c => c.DateCreation).HasDefaultValueSql("timezone('utc', now())");
 
             b.HasIndex(c => c.NumeroClient).IsUnique();
             b.HasIndex(c => c.NumeroCNI).IsUnique();
@@ -148,7 +148,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(t => t.Libelle).HasMaxLength(50).IsRequired();
             b.Property(t => t.TauxInteret).HasColumnType("decimal(5,2)").HasDefaultValue(0m);
             b.Property(t => t.SoldeMinimum).HasColumnType("decimal(18,2)").HasDefaultValue(0m);
-            b.Property(t => t.DateCreation).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(t => t.DateCreation).HasDefaultValueSql("timezone('utc', now())");
             b.HasIndex(t => t.Code).IsUnique();
         });
 
@@ -160,8 +160,8 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(c => c.Solde).HasColumnType("decimal(18,2)").HasDefaultValue(0m);
             b.Property(c => c.Devise).HasMaxLength(3).HasDefaultValue("BIF");
             b.Property(c => c.Statut).HasMaxLength(20).HasDefaultValue("Actif");
-            b.Property(c => c.DateOuverture).HasDefaultValueSql("SYSDATETIME()");
-            b.Property(c => c.DateCreation).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(c => c.DateOuverture).HasDefaultValueSql("timezone('utc', now())");
+            b.Property(c => c.DateCreation).HasDefaultValueSql("timezone('utc', now())");
 
             b.HasIndex(c => c.NumeroCompte).IsUnique();
             b.HasIndex(c => c.ClientId);
@@ -194,7 +194,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(c => c.PlafondRetraitJournalier).HasColumnType("decimal(18,2)");
             b.Property(c => c.PlafondPaiementJournalier).HasColumnType("decimal(18,2)");
             b.Property(c => c.PlafondEnLigneJournalier).HasColumnType("decimal(18,2)");
-            b.Property(c => c.DateCreation).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(c => c.DateCreation).HasDefaultValueSql("timezone('utc', now())");
 
             b.HasIndex(c => c.NumeroCarte).IsUnique();
             b.HasIndex(c => c.CompteId);
@@ -248,7 +248,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(p => p.MotifRejet).HasMaxLength(500);
             b.Property(p => p.Commentaire).HasMaxLength(500);
             b.Property(p => p.Statut).HasMaxLength(20).HasDefaultValue("EnAttente");
-            b.Property(p => p.DateDemande).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(p => p.DateDemande).HasDefaultValueSql("timezone('utc', now())");
 
             b.HasIndex(p => p.Reference).IsUnique();
             b.HasIndex(p => p.ClientId);
@@ -303,7 +303,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(v => v.BanqueDestination).HasMaxLength(100);
             b.Property(v => v.NumeroCompteExterne).HasMaxLength(34);
             b.Property(v => v.BeneficiaireExterne).HasMaxLength(150);
-            b.Property(v => v.DateVirement).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(v => v.DateVirement).HasDefaultValueSql("timezone('utc', now())");
 
             b.HasIndex(v => v.Reference).IsUnique();
             b.HasIndex(v => v.CompteSourceId);
@@ -333,8 +333,8 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(o => o.Devise).HasMaxLength(3).HasDefaultValue("BIF");
             b.Property(o => o.Statut).HasMaxLength(20).HasDefaultValue("EnAttente");
             b.Property(o => o.Commentaire).HasMaxLength(255);
-            b.Property(o => o.DateOperation).HasDefaultValueSql("SYSDATETIME()");
-            b.Property(o => o.DateCreation).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(o => o.DateOperation).HasDefaultValueSql("timezone('utc', now())");
+            b.Property(o => o.DateCreation).HasDefaultValueSql("timezone('utc', now())");
 
             b.HasIndex(o => o.Reference).IsUnique();
             b.HasIndex(o => o.CompteId);
@@ -373,7 +373,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(e => e.Sens).HasMaxLength(10).IsRequired();
             b.Property(e => e.Montant).HasColumnType("decimal(18,2)").IsRequired();
             b.Property(e => e.Devise).HasMaxLength(3).HasDefaultValue("BIF");
-            b.Property(e => e.DateEcriture).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(e => e.DateEcriture).HasDefaultValueSql("timezone('utc', now())");
             b.Property(e => e.Libelle).HasMaxLength(255);
 
             b.HasIndex(e => e.OperationId);
@@ -410,14 +410,14 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
         modelBuilder.Entity<AuditLog>(b =>
         {
             b.ToTable("AuditLog");   // table au singulier, comme dans le script
-            b.Property(a => a.DateEvenement).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(a => a.DateEvenement).HasDefaultValueSql("timezone('utc', now())");
             b.Property(a => a.Action).HasMaxLength(50).IsRequired();
             b.Property(a => a.TableConcernee).HasMaxLength(50);
-            b.Property(a => a.ValeurAvant).HasColumnType("nvarchar(max)");
-            b.Property(a => a.ValeurApres).HasColumnType("nvarchar(max)");
+            b.Property(a => a.ValeurAvant).HasColumnType("text");
+            b.Property(a => a.ValeurApres).HasColumnType("text");
             b.Property(a => a.AdresseIP).HasMaxLength(45);
             b.Property(a => a.UserAgent).HasMaxLength(255);
-            b.Property(a => a.Details).HasColumnType("nvarchar(max)");
+            b.Property(a => a.Details).HasColumnType("text");
 
             b.HasIndex(a => a.DateEvenement);
             b.HasIndex(a => a.UtilisateurId);
@@ -439,7 +439,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(a => a.Niveau).HasMaxLength(20).IsRequired();
             b.Property(a => a.Description).HasMaxLength(500);
             b.Property(a => a.Statut).HasMaxLength(20).HasDefaultValue("Ouverte");
-            b.Property(a => a.DateAlerte).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(a => a.DateAlerte).HasDefaultValueSql("timezone('utc', now())");
 
             b.HasIndex(a => a.Statut);
             b.HasIndex(a => a.ClientId);
@@ -464,7 +464,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(s => s.Token).HasMaxLength(255).IsRequired();
             b.Property(s => s.AdresseIP).HasMaxLength(45);
             b.Property(s => s.UserAgent).HasMaxLength(255);
-            b.Property(s => s.DateConnexion).HasDefaultValueSql("SYSDATETIME()");
+            b.Property(s => s.DateConnexion).HasDefaultValueSql("timezone('utc', now())");
 
             b.HasIndex(s => s.Token).IsUnique();
             b.HasIndex(s => s.UtilisateurId);
@@ -486,7 +486,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
             b.Property(n => n.Langue).HasMaxLength(10).HasDefaultValue("fr-BI");
             b.Property(n => n.TemplateVersion);
             b.Property(n => n.Erreur).HasMaxLength(1000);
-            b.Property(n => n.DateCreation).HasDefaultValueSql("SYSUTCDATETIME()");
+            b.Property(n => n.DateCreation).HasDefaultValueSql("timezone('utc', now())");
             b.HasIndex(n => new { n.UtilisateurId, n.DateLecture, n.DateCreation });
             b.HasOne(n => n.Utilisateur).WithMany()
                 .HasForeignKey(n => n.UtilisateurId)
@@ -536,3 +536,4 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
         });
     }
 }
+

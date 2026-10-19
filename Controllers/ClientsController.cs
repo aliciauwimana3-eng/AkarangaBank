@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 using Microsoft.EntityFrameworkCore;
 using AkarangaBank.Web.Services;
 using AkarangaBank.Web.ViewModels;
@@ -76,7 +76,7 @@ public class ClientsController : Controller
             return RedirectToAction(nameof(Index));
         }
         catch (DbUpdateException ex)
-            when (ex.InnerException is SqlException sql && sql.Number == 2601)
+            when (ex.InnerException is PostgresException pg && pg.SqlState == PostgresErrorCodes.UniqueViolation)
         {
             ModelState.AddModelError("", "Un client avec ce numéro ou ce CNI existe déjà.");
             await ChargerAgencesAsync(vm.AgenceId);
@@ -215,5 +215,6 @@ public class ClientsController : Controller
             "Id", "Libelle", selectedId);
     }
 }
+
 
 
