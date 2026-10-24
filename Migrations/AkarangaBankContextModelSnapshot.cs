@@ -787,7 +787,7 @@ namespace AkarangaBank.Web.Migrations
 
                     b.ToTable("Ecritures", null, t =>
                         {
-                            t.HasCheckConstraint("CK_Ecritures_UnSeulCompte", "(CompteId IS NULL AND CompteComptableId IS NOT NULL) OR (CompteId IS NOT NULL AND CompteComptableId IS NULL)");
+                            t.HasCheckConstraint("CK_Ecritures_UnSeulCompte", "(\"CompteId\" IS NULL AND \"CompteComptableId\" IS NOT NULL) OR (\"CompteId\" IS NOT NULL AND \"CompteComptableId\" IS NULL)");
                         });
                 });
 

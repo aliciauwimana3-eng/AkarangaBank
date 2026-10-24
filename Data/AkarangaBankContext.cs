@@ -369,7 +369,7 @@ public class AkarangaBankContext : IdentityDbContext<ApplicationUser, Applicatio
         {
             b.ToTable("Ecritures", table => table.HasCheckConstraint(
                 "CK_Ecritures_UnSeulCompte",
-                "(CompteId IS NULL AND CompteComptableId IS NOT NULL) OR (CompteId IS NOT NULL AND CompteComptableId IS NULL)"));
+                "(\"CompteId\" IS NULL AND \"CompteComptableId\" IS NOT NULL) OR (\"CompteId\" IS NOT NULL AND \"CompteComptableId\" IS NULL)"));
             b.Property(e => e.Sens).HasMaxLength(10).IsRequired();
             b.Property(e => e.Montant).HasColumnType("decimal(18,2)").IsRequired();
             b.Property(e => e.Devise).HasMaxLength(3).HasDefaultValue("BIF");

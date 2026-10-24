@@ -841,7 +841,7 @@ namespace AkarangaBank.Web.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ecritures", x => x.Id);
-                    table.CheckConstraint("CK_Ecritures_UnSeulCompte", "(CompteId IS NULL AND CompteComptableId IS NOT NULL) OR (CompteId IS NOT NULL AND CompteComptableId IS NULL)");
+                    table.CheckConstraint("CK_Ecritures_UnSeulCompte", "(\"CompteId\" IS NULL AND \"CompteComptableId\" IS NOT NULL) OR (\"CompteId\" IS NOT NULL AND \"CompteComptableId\" IS NULL)");
                     table.ForeignKey(
                         name: "FK_Ecritures_Agences_AgenceId",
                         column: x => x.AgenceId,
