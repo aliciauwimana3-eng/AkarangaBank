@@ -20,6 +20,36 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
+if (int.TryParse(Environment.GetEnvironmentVariable("PORT"), out var railwayPort) && railwayPort is > 0 and <= 65535)
+    builder.WebHost.UseUrls($"http://0.0.0.0:{railwayPort}");
+
+// Railway expose PostgreSQL sous forme d'URL. Accepter aussi cette variable
+// permet de relier la base provisionnée sans recopier ses identifiants.
+var connectionString = builder.Configuration.GetConnectionString("AkarangaBank");
+if (string.IsNullOrWhiteSpace(connectionString) &&
+    Uri.TryCreate(builder.Configuration["DATABASE_URL"], UriKind.Absolute, out var databaseUri) &&
+    (databaseUri.Scheme == "postgres" || databaseUri.Scheme == "postgresql"))
+{
+    var databaseName = databaseUri.AbsolutePath.TrimStart('/');
+    if (string.IsNullOrWhiteSpace(databaseName))
+        throw new InvalidOperationException("DATABASE_URL doit contenir le nom de la base PostgreSQL.");
+
+    connectionString = new Npgsql.NpgsqlConnectionStringBuilder
+    {
+        Host = databaseUri.Host,
+        Port = databaseUri.Port > 0 ? databaseUri.Port : 5432,
+        Database = Uri.UnescapeDataString(databaseName),
+        Username = Uri.UnescapeDataString(databaseUri.UserInfo.Split(':', 2)[0]),
+        Password = Uri.UnescapeDataString(databaseUri.UserInfo.Contains(':')
+            ? databaseUri.UserInfo[(databaseUri.UserInfo.IndexOf(':') + 1)..]
+            : string.Empty),
+        SslMode = Npgsql.SslMode.Require
+    }.ConnectionString;
+}
+
+if (string.IsNullOrWhiteSpace(connectionString) && !builder.Environment.IsEnvironment("Testing"))
+    throw new InvalidOperationException("Configurez ConnectionStrings__AkarangaBank ou DATABASE_URL.");
+
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
@@ -39,7 +69,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 builder.Services.AddScoped<AuditSaveChangesInterceptor>();
 builder.Services.AddDbContext<AkarangaBankContext>((services, options) =>
     options.UseNpgsql(
-        builder.Configuration.GetConnectionString("AkarangaBank"))
+        connectionString)
         .AddInterceptors(services.GetRequiredService<AuditSaveChangesInterceptor>()));
 
 
@@ -200,7 +230,7 @@ if (!builder.Environment.IsEnvironment("Testing"))
         .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
         .UseSimpleAssemblyNameTypeSerializer()
         .UseRecommendedSerializerSettings()
-        .UsePostgreSqlStorage(options => options.UseNpgsqlConnection(builder.Configuration.GetConnectionString("AkarangaBank"))));
+        .UsePostgreSqlStorage(options => options.UseNpgsqlConnection(connectionString)));
     builder.Services.AddHangfireServer();
 }
 

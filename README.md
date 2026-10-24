@@ -45,6 +45,22 @@ Sans ces paramètres, les fonctionnalités internes et les autres pages restent 
 
 Les volumes Compose conservent SQL Server et `App_Data`. Le mot de passe SA ainsi que l'administrateur initial sont des paramètres de démonstration à remplacer avant tout déploiement.
 
+## Déploiement sur Railway
+
+1. Pousse ce dépôt sur GitHub et crée un projet Railway depuis ce dépôt. Railway détecte `railway.json` et construit l'image avec le `Dockerfile`.
+2. Ajoute un service **PostgreSQL** au projet et référence sa variable `DATABASE_URL` dans le service web (Railway permet de choisir la variable du service PostgreSQL). L'application la convertit en chaîne Npgsql sécurisée. Tu peux aussi définir `ConnectionStrings__AkarangaBank` directement.
+3. Dans **Variables** du service web, définis les valeurs suivantes avec tes propres secrets :
+
+   - `ASPNETCORE_ENVIRONMENT=Production`
+   - `Database__ApplyMigrationsOnStartup=true`
+   - `AdminInitial__Email` et `AdminInitial__Password` pour créer le premier administrateur
+   - `ForwardedHeaders__TrustAll=true` pour reconnaître HTTPS derrière le proxy Railway
+
+4. Dans **Settings → Networking**, génère un domaine public. Le service écoute sur le port `8080`; Railway vérifie `/health/ready` avant de terminer le déploiement.
+5. Ajoute un volume Railway monté sur `/app/App_Data` afin de conserver les clés de cookies et les fichiers applicatifs entre redéploiements.
+
+La première mise en ligne applique la migration PostgreSQL et initialise les rôles, l'agence siège et l'administrateur. Garde la base et le volume attachés au projet. Les secrets SMTP, Twilio et Firebase restent facultatifs et peuvent être ajoutés dans les variables Railway si tu actives ces services.
+
 ## Structure du projet
 
 | Dossier | Contenu |
