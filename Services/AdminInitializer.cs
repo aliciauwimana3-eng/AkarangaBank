@@ -57,7 +57,28 @@ public static class AdminInitializer
         }
 
         var admin = await userManager.FindByEmailAsync(adminEmail);
-        if (admin is not null) return;
+        if (admin is not null)
+        {
+            // Action administrative exceptionnelle, à activer explicitement et à retirer
+            // aussitôt après le redémarrage Railway correspondant.
+            if (config.GetValue<bool>("AdminInitial:ResetExistingPassword"))
+            {
+                var resetToken = await userManager.GeneratePasswordResetTokenAsync(admin);
+                var resetResult = await userManager.ResetPasswordAsync(admin, resetToken, adminPassword);
+                if (!resetResult.Succeeded)
+                {
+                    logger.LogError("Réinitialisation du mot de passe administrateur impossible : {Erreurs}",
+                        string.Join(", ", resetResult.Errors.Select(e => e.Description)));
+                    return;
+                }
+
+                await userManager.SetLockoutEndDateAsync(admin, null);
+                await userManager.ResetAccessFailedCountAsync(admin);
+                logger.LogWarning("Mot de passe de l'administrateur initial réinitialisé à la demande de configuration.");
+            }
+
+            return;
+        }
 
         var siege = await context.Agences.FirstOrDefaultAsync(a => a.EstSiege);
         if (siege is null)
