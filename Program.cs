@@ -277,6 +277,11 @@ app.UseRouting();
 app.UseRateLimiter();
 
 app.UseAuthentication();   // AVANT UseAuthorization
+if (!app.Environment.IsEnvironment("Testing") &&
+    app.Configuration.GetValue("Security:RequireAdminTwoFactor", true))
+{
+    app.UseMiddleware<AkarangaBank.Web.Services.AdminTwoFactorEnforcementMiddleware>();
+}
 app.UseAuthorization();
 if (!app.Environment.IsEnvironment("Testing"))
 {
